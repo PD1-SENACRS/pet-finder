@@ -1,26 +1,21 @@
 {
-   "name": "pet-finder",
-   "version": "1.0.0",
-   "description": "",
-   "main": "index.js",
-   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "ts-node src/index.ts",
-      "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
-   },
-   "author": "",
-   "license": "ISC",
-   "dependencies": {
-      "dotenv": "^16.0.0",
-      "express": "^4.17.3",
-      "mysql": "^2.14.1",
-      "pg": "^8.7.3",
-      "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.41"
-   },
-   "devDependencies": {
-      "@types/node": "^8.0.29",
-      "ts-node": "3.3.0",
-      "typescript": "3.3.3333"
-   }
+  "name": "pet-finder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "pg": "^8.7.3",
+    "sequelize": "^6.19.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  },
+  "description": ""
 }
