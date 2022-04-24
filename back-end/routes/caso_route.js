@@ -5,6 +5,7 @@ module.exports = app => {
     router.post("/", casoController.criarCaso);
     router.get("/", casoController.listarTodosCasos);
     router.get("/:id", casoController.procurarCasoPorId);
+    router.get("/usuario/:id", casoController.procurarCasoPorUsuario);
     router.put("/:id", casoController.atualizarCaso);
     router.delete("/:id", casoController.deletarCaso);
     /* router.delete("/", casoController.deletarTodosCasos); */

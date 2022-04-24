@@ -21,9 +21,7 @@ db.sequelize = sequelize;
 // Indicando os models para criar as
 db.usuarios = require("./usuario_model.js")(sequelize, Sequelize);
 db.casos = require("./caso_model.js")(sequelize, Sequelize);
-db.insercao = require("./insercao_model.js")(sequelize, Sequelize);
 
 // Criando as relações entre tabelas
-db.insercao.belongsTo(db.usuarios, { foreignKey: "id_usuario", as: "usuario"});
-db.insercao.belongsTo(db.casos, { foreignKey: "id_caso", as: "caso"});
+db.casos.belongsTo(db.usuarios, { foreignKey: "id_usuario", as: "usuario"});
 module.exports = db;

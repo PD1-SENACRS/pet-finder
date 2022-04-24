@@ -21,7 +21,8 @@ exports.criarCaso = (req, res) => {
         nome_animal: req.body.nome_animal,
         imagem: req.body.imagem,
         latitude: req.body.latitude,
-        longitude: req.body.longitude
+        longitude: req.body.longitude,
+        id_usuario: req.body.id_usuario, // TODO: MUDAR ESSA PARTE
     };
 
     // Salva o Caso no banco de dados
@@ -74,6 +75,21 @@ exports.procurarCasoPorId = (req, res) => {
     });
 };
 
+exports.procurarCasoPorUsuario = (req, res) => {
+    const id_usuario = req.params.id;
+    var condition = id_usuario ? { id_usuario: { [Op.eq]: `${id_usuario}` } } : null;
+    Caso.findAll({ where: condition })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Um erro ocorreu ao tentar recuperar a lista de casos!"
+        });
+    });
+};
+
 // Atualiza um Caso atraves do ID na requisicao
 exports.atualizarCaso = (req, res) => {
     const id = req.params.id;
@@ -88,7 +104,7 @@ exports.atualizarCaso = (req, res) => {
         }
         else {
             res.send({
-                message: `Não é possível atualizar Caso com id = ${id}.\n Talvez o Caso não foi encontrado ou o body da requisição está vazio!`
+                message: `Não é possível atualizar Caso com id = ${id}. Talvez o Caso não foi encontrado ou o body da requisição está vazio!`
             });
         }
     })

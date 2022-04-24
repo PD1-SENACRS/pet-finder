@@ -52,7 +52,7 @@ exports.listarTodosUsuarios = (req, res) => {
 
 // Procura um unico Usuario baseado no seu ID
 exports.procurarUsuarioPorId = (req, res) => {
-    const id = req.params.id_usuario;
+    const id = req.params.id;
     Usuario.findByPk(id)
     .then(data => {
         if (data) {
@@ -73,7 +73,7 @@ exports.procurarUsuarioPorId = (req, res) => {
 
 // Atualiza um Usuario atraves do ID na requisicao
 exports.atualizarUsuario = (req, res) => {
-    const id = req.params.id_usuario;
+    const id = req.params.id;
     Usuario.update(req.body, {
         where: { id_usuario: id }
     })
@@ -85,7 +85,7 @@ exports.atualizarUsuario = (req, res) => {
         }
         else {
             res.send({
-                message: `Não é possível atualizar Usuário com id = ${id}.\n Talvez o Usuário não foi encontrado ou o body da requisição está vazio!`
+                message: `Não é possível atualizar Usuário com id = ${id}. Talvez o Usuário não foi encontrado ou o body da requisição está vazio!`
             });
         }
     })
