@@ -1,13 +1,13 @@
 module.exports = app => {
-    const usuariosController = require("../controllers/usuario_controller");
+    const usuarioController = require("../controllers/usuario_controller");
     var router = require("express").Router();
 
-    router.post("/", usuariosController.criarUsuario);
-    router.get("/", usuariosController.listarTodosUsuarios);
-    router.get("/:id", usuariosController.procurarUsuarioPorId);
-    router.put("/:id", usuariosController.atualizarUsuario);
-    router.delete("/:id", usuariosController.deletarUsuario);
-    /* router.delete("/", usuariosController.deleteAll); */
+    router.post("/", usuarioController.criarUsuario);
+    router.get("/", usuarioController.listarTodosUsuarios);
+    router.get("/:id", usuarioController.procurarUsuarioPorId);
+    router.put("/:id", usuarioController.atualizarUsuario);
+    router.delete("/:id", usuarioController.deletarUsuario);
+    /* router.delete("/", usuarioController.deletarTodosUsuarios); */
 
     app.use('/api/usuarios', router);
 };

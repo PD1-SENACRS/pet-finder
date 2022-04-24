@@ -1,123 +1,137 @@
-/* const db = require("../models");
+const db = require("../models");
 const Caso = db.casos;
 const Op = db.Sequelize.Op;
 
-// Cria e salva um Caso
-exports.create = (req, res) => {
-    // Valida corpo da requisição
-    if (!req.body.nome) {
+// Criar um novo Caso
+exports.criarCaso = (req, res) => {
+    /* // Validate request
+    if (!req.body) {
         res.status(400).send({
             message: "Counteúdo não pode ficar vazio!"
         });
         return;
-    }
-    // Create a Tutorial
-    const usuario = {
-        nome: req.body.nome
+    } */
+
+    // Cria uma instancia de Caso para salvar suas informacoes
+    const caso = {
+        status: req.body.status,
+        data_caso: req.body.data_caso,
+        tipo_animal: req.body.tipo_animal,
+        raca: req.body.raca,
+        nome_animal: req.body.nome_animal,
+        imagem: req.body.imagem,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude
     };
-    // Save Tutorial in the database
-    Usuario.create(usuario)
+
+    // Salva o Caso no banco de dados
+    Caso.create(caso)
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
         message:
-            err.message || "Um erro ocorreu ao tentar criar um usuário!"
+            err.message || "Um erro ocorreu ao tentar criar um caso!"
         });
     });
 };
-// Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {
-    const nome = req.query.nome;
-    var condition = nome ? { nome: { [Op.like]: `%${nome}%` } } : null;
-    Usuario.findAll({ where: condition })
+
+// Recupera todos Casos do banco de dados
+exports.listarTodosCasos = (req, res) => {
+    const status = req.query.status;
+    var condition = status ? { status: { [Op.like]: `%${status}%` } } : null;
+    Caso.findAll({ where: condition })
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
             message:
-                err.message || "Um erro ocorreu ao tentar recuperar a lista de usuários!"
+                err.message || "Um erro ocorreu ao tentar recuperar a lista de casos!"
         });
     });
 };
-// Find a single Tutorial with an id
-exports.findOne = (req, res) => {
+
+// Procura um unico Caso baseado no seu ID
+exports.procurarCasoPorId = (req, res) => {
     const id = req.params.id;
-    Usuario.findByPk(id)
+    Caso.findByPk(id)
     .then(data => {
-    if (data) {
-        res.send(data);
-    }
-    else {
-        res.status(404).send({
-            message: `Não foi possível achar usuário com id = ${id}.`
-        });
-    }
-    })
-    .catch(err => {
-        res.status(500).send({
-            message: "Erro ao recuperar usuário com id = " + id
-        });
-    });
-};
-// Update a Tutorial by the id in the request
-exports.update = (req, res) => {
-    const id = req.params.id;
-    Usuario.update(req.body, {
-        where: { id: id }
-    })
-    .then(num => {
-        if (num == 1) {
-            res.send({
-                message: "Usuário foi atualizado com sucesso!"
-            });
+        if (data) {
+            res.send(data);
         }
         else {
-            res.send({
-                message: `Não é possível atualizar Usuário com id=${id}.\n Talvez o Usuário não foi encontrado ou o body da requisição está vazio!`
+            res.status(404).send({
+                message: `Não foi possível achar um caso com id = ${id}.`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Erro ao atualizar Usuário com id = " + id
+            message: "Erro ao recuperar caso com id = " + id
         });
     });
 };
-// Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
+
+// Atualiza um Caso atraves do ID na requisicao
+exports.atualizarCaso = (req, res) => {
     const id = req.params.id;
-    Usuario.destroy({
-        where: { id: id }
+    Caso.update(req.body, {
+        where: { id_caso: id }
     })
     .then(num => {
         if (num == 1) {
             res.send({
-                message: "Usuário foi removido com sucesso!"
+                message: "Caso foi atualizado com sucesso!"
             });
         }
         else {
             res.send({
-                message: `Não foi possível remover Usuário com id = ${id}. Talvez o Usuário não exista!`
+                message: `Não é possível atualizar Caso com id = ${id}.\n Talvez o Caso não foi encontrado ou o body da requisição está vazio!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Erro ao atualizar Caso com id = " + id
+        });
+    });
+};
+
+// Deleta um Caso com o respectivo ID na requisicao
+exports.deletarCaso = (req, res) => {
+    const id = req.params.id;
+    Caso.destroy({
+        where: { id_caso: id }
+    })
+    .then(num => {
+        if (num == 1) {
+            res.send({
+                message: "Caso foi removido com sucesso!"
+            });
+        }
+        else {
+            res.send({
+                message: `Não foi possível remover Caso com id = ${id}. Talvez o Caso não exista!`
             });
         }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Não foi possível remover o usuário com id = " + id
+        message: "Não foi possível remover o caso com id = " + id
       });
     });
 };
-// Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
-    Usuário.destroy({
+
+// Deletar todos Casos do banco de dados [VERIFICAR SE VALE A PENA]
+/* exports.deletarTodosCasos = (req, res) => {
+    Caso.destroy({
         where: {},
         truncate: false
     })
     .then(nums => {
-        res.send({ message: `${nums} Usuários foram removidos com sucesso!` });
+        res.send({ message: `${nums} Casos foram removidos com sucesso!` });
     })
     .catch(err => {
         res.status(500).send({
@@ -125,5 +139,4 @@ exports.deleteAll = (req, res) => {
                 err.message || "Algum erro ocorreu!"
         });
     });
-};
- */
+}; */

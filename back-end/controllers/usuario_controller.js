@@ -20,7 +20,8 @@ exports.criarUsuario = (req, res) => {
         telefone: req.body.telefone,
         data_nascimento: req.body.data_nascimento
     };
-    // Save Tutorial in the database
+
+    // Salva o Usuario no banco de dados
     Usuario.create(usuario)
     .then(data => {
         res.send(data);
@@ -74,7 +75,7 @@ exports.procurarUsuarioPorId = (req, res) => {
 exports.atualizarUsuario = (req, res) => {
     const id = req.params.id_usuario;
     Usuario.update(req.body, {
-        where: { id: id }
+        where: { id_usuario: id }
     })
     .then(num => {
         if (num == 1) {
@@ -84,7 +85,7 @@ exports.atualizarUsuario = (req, res) => {
         }
         else {
             res.send({
-                message: `Não é possível atualizar Usuário com id=${id}.\n Talvez o Usuário não foi encontrado ou o body da requisição está vazio!`
+                message: `Não é possível atualizar Usuário com id = ${id}.\n Talvez o Usuário não foi encontrado ou o body da requisição está vazio!`
             });
         }
     })
@@ -97,9 +98,9 @@ exports.atualizarUsuario = (req, res) => {
 
 // Deleta um Usuario com o respectivo ID na requisicao
 exports.deletarUsuario = (req, res) => {
-    const id = req.params.id_usuario;
+    const id = req.params.id;
     Usuario.destroy({
-        where: { id: id }
+        where: { id_usuario: id }
     })
     .then(num => {
         if (num == 1) {
