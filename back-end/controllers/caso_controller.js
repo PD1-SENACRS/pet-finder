@@ -1,24 +1,19 @@
-const db = require("../models");
-const Usuario = db.usuarios;
+/* const db = require("../models");
+const Caso = db.casos;
 const Op = db.Sequelize.Op;
 
-// Criar um novo Usuario
-exports.criarUsuario = (req, res) => {
-    /* // Validate request
-    if (!req.body) {
+// Cria e salva um Caso
+exports.create = (req, res) => {
+    // Valida corpo da requisição
+    if (!req.body.nome) {
         res.status(400).send({
             message: "Counteúdo não pode ficar vazio!"
         });
         return;
-    } */
-
-    // Cria uma instancia de Usuario para salvar suas informacoes
+    }
+    // Create a Tutorial
     const usuario = {
-        nome_completo: req.body.nome_completo,
-        nome_usuario: req.body.nome_usuario,
-        senha: req.body.senha,
-        telefone: req.body.telefone,
-        data_nascimento: req.body.data_nascimento
+        nome: req.body.nome
     };
     // Save Tutorial in the database
     Usuario.create(usuario)
@@ -32,11 +27,10 @@ exports.criarUsuario = (req, res) => {
         });
     });
 };
-
-// Recupera todos Usuarios do banco de dados
-exports.listarTodosUsuarios = (req, res) => {
-    const nome = req.query.nome_completo;
-    var condition = nome ? { nome_completo: { [Op.like]: `%${nome}%` } } : null;
+// Retrieve all Tutorials from the database.
+exports.findAll = (req, res) => {
+    const nome = req.query.nome;
+    var condition = nome ? { nome: { [Op.like]: `%${nome}%` } } : null;
     Usuario.findAll({ where: condition })
     .then(data => {
         res.send(data);
@@ -48,20 +42,19 @@ exports.listarTodosUsuarios = (req, res) => {
         });
     });
 };
-
-// Procura um unico Usuario baseado no seu ID
-exports.procurarUsuarioPorId = (req, res) => {
-    const id = req.params.id_usuario;
+// Find a single Tutorial with an id
+exports.findOne = (req, res) => {
+    const id = req.params.id;
     Usuario.findByPk(id)
     .then(data => {
-        if (data) {
-            res.send(data);
-        }
-        else {
-            res.status(404).send({
-                message: `Não foi possível achar usuário com id = ${id}.`
-            });
-        }
+    if (data) {
+        res.send(data);
+    }
+    else {
+        res.status(404).send({
+            message: `Não foi possível achar usuário com id = ${id}.`
+        });
+    }
     })
     .catch(err => {
         res.status(500).send({
@@ -69,10 +62,9 @@ exports.procurarUsuarioPorId = (req, res) => {
         });
     });
 };
-
-// Atualiza um Usuario atraves do ID na requisicao
-exports.atualizarUsuario = (req, res) => {
-    const id = req.params.id_usuario;
+// Update a Tutorial by the id in the request
+exports.update = (req, res) => {
+    const id = req.params.id;
     Usuario.update(req.body, {
         where: { id: id }
     })
@@ -94,10 +86,9 @@ exports.atualizarUsuario = (req, res) => {
         });
     });
 };
-
-// Deleta um Usuario com o respectivo ID na requisicao
-exports.deletarUsuario = (req, res) => {
-    const id = req.params.id_usuario;
+// Delete a Tutorial with the specified id in the request
+exports.delete = (req, res) => {
+    const id = req.params.id;
     Usuario.destroy({
         where: { id: id }
     })
@@ -119,9 +110,8 @@ exports.deletarUsuario = (req, res) => {
       });
     });
 };
-
-// Deletar todos Usuarios do banco de dados [VERIFICAR SE VALE A PENA]
-/* exports.deletarTodosUsuarios = (req, res) => {
+// Delete all Tutorials from the database.
+exports.deleteAll = (req, res) => {
     Usuário.destroy({
         where: {},
         truncate: false
@@ -135,4 +125,5 @@ exports.deletarUsuario = (req, res) => {
                 err.message || "Algum erro ocorreu!"
         });
     });
-}; */
+};
+ */
