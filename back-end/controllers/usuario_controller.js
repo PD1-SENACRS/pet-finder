@@ -25,7 +25,7 @@ exports.criarUsuario = (req, res) => {
     // Salva o Usuario no banco de dados
     Usuario.create(usuario)
     .then(data => {
-        res.send(data);
+        res.status(201).send(data);
     })
     .catch(err => {
         res.status(500).send({
@@ -37,11 +37,11 @@ exports.criarUsuario = (req, res) => {
 
 // Recupera todos Usuarios do banco de dados
 exports.listarTodosUsuarios = (req, res) => {
-    const nome = req.query.nome_completo;
-    var condition = nome ? { nome_completo: { [Op.like]: `%${nome}%` } } : null;
-    Usuario.findAll({ where: condition })
-    .then(data => {
-        res.send(data);
+    var queryString = `SELECT * FROM "Usuario"`;
+
+    Usuario.sequelize.query(queryString)
+    .then(([results, metadata]) => {
+        res.status(200).send(results);
     })
     .catch(err => {
         res.status(500).send({
@@ -54,20 +54,22 @@ exports.listarTodosUsuarios = (req, res) => {
 // Procura um unico Usuario baseado no seu ID
 exports.procurarUsuarioPorId = (req, res) => {
     const id = req.params.id;
-    Usuario.findByPk(id)
-    .then(data => {
-        if (data) {
-            res.send(data);
+    var stringQuery = `SELECT * FROM "Usuario" WHERE id_usuario = $id`;
+
+    Usuario.sequelize.query(stringQuery, { bind: {id}})
+    .then(([results, metadata]) => {
+        if (results != '') {
+            res.status(200).send(results);
         }
         else {
             res.status(404).send({
-                message: `Não foi possível achar usuário com id = ${id}.`
+                message: `Não foi possível achar um usuário com este ID.`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Erro ao recuperar usuário com id = " + id
+            message: "Erro ao recuperar um usuário este ID"
         });
     });
 };
@@ -80,19 +82,19 @@ exports.atualizarUsuario = (req, res) => {
     })
     .then(num => {
         if (num == 1) {
-            res.send({
+            res.status(200).send({
                 message: "Usuário foi atualizado com sucesso!"
             });
         }
         else {
-            res.send({
-                message: `Não é possível atualizar Usuário com id = ${id}. Talvez o Usuário não foi encontrado ou o body da requisição está vazio!`
+            res.status(404).send({
+                message: `Não é possível atualizar um usuário com este ID, talvez o usuário não foi encontrado ou o body da requisição está vazio!`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Erro ao atualizar Usuário com id = " + id
+            message: "Erro ao atualizar usuário com este ID"
         });
     });
 };
@@ -100,24 +102,24 @@ exports.atualizarUsuario = (req, res) => {
 // Deleta um Usuario com o respectivo ID na requisicao
 exports.deletarUsuario = (req, res) => {
     const id = req.params.id;
-    Usuario.destroy({
-        where: { id_usuario: id }
-    })
-    .then(num => {
-        if (num == 1) {
-            res.send({
+    var queryString = `DELETE FROM "Usuario" WHERE id_usuario = $id`;
+
+    Usuario.sequelize.query(queryString, {bind: {id}})
+    .then(([results, metadata]) => {
+        if (metadata.rowCount == 1) {
+            res.status(200).send({
                 message: "Usuário foi removido com sucesso!"
             });
         }
         else {
-            res.send({
-                message: `Não foi possível remover Usuário com id = ${id}. Talvez o Usuário não exista!`
+            res.status(404).send({
+                message: `Não foi possível remover o usuário com este id, talvez o usuário não exista!`
             });
         }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Não foi possível remover o usuário com id = " + id
+        message: "Não foi possível remover o usuário!"
       });
     });
 };
