@@ -1,3 +1,4 @@
+const { QueryTypes } = require('sequelize');
 const db = require("../models");
 const Usuario = db.usuarios;
 const Op = db.Sequelize.Op;
@@ -120,6 +121,34 @@ exports.deletarUsuario = (req, res) => {
       });
     });
 };
+
+// Realiza a autenticação do acesso do usuário
+exports.realizarLogin = (req, res) => {
+    const usuario = req.body.nome_usuario;
+    const senha = req.body.senha;
+
+    // Procura o primeiro resultado que tenha mesmo usuario e senha
+    var queryString = `SELECT * FROM "Usuario" WHERE nome_usuario = '${usuario}' AND senha = '${senha}' FETCH FIRST ROW ONLY`
+
+    Usuario.sequelize.query(queryString).then(([results, metadata]) => {
+        // Necessário diferenciar pois sempre retornar um array vazio caso não encontre resultado
+        if(results != ''){
+            res.status(200).send({
+                message: "Usuário autenticado!"
+            });
+        }
+        else{
+            res.status(404).send({
+                message: "Usuário não encontrado!"
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Ocorreu um erro ao realizar o login"
+        });
+    })
+}
 
 // Deletar todos Usuarios do banco de dados [VERIFICAR SE VALE A PENA]
 /* exports.deletarTodosUsuarios = (req, res) => {
