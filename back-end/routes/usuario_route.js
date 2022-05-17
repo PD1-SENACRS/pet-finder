@@ -7,6 +7,7 @@ module.exports = app => {
     router.get("/:id", usuarioController.procurarUsuarioPorId);
     router.put("/:id", usuarioController.atualizarUsuario);
     router.delete("/:id", usuarioController.deletarUsuario);
+    router.post("/login", usuarioController.realizarLogin);
     /* router.delete("/", usuarioController.deletarTodosUsuarios); */
 
     app.use('/api/usuarios', router);
