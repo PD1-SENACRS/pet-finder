@@ -127,10 +127,10 @@ exports.realizarLogin = (req, res) => {
     const usuario = req.body.nome_usuario;
     const senha = req.body.senha;
 
-    // Procura o primeiro resultado que tenha mesmo usuario e senha
-    var queryString = `SELECT * FROM "Usuario" WHERE nome_usuario = '${usuario}' AND senha = '${senha}' FETCH FIRST ROW ONLY`
+    var queryString = `SELECT * FROM "Usuario" WHERE nome_usuario = $usuario AND senha = $senha FETCH FIRST ROW ONLY`
 
-    Usuario.sequelize.query(queryString).then(([results, metadata]) => {
+    Usuario.sequelize.query(queryString, {bind: {usuario, senha}})
+    .then(([results, metadata]) => {
         // Necessário diferenciar pois sempre retornar um array vazio caso não encontre resultado
         if(results != ''){
             res.status(200).send({
