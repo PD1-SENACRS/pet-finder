@@ -28,7 +28,7 @@ exports.criarCaso = (req, res) => {
     // Salva o Caso no banco de dados
     Caso.create(caso)
     .then(data => {
-        res.send(data);
+        res.stauts(201).send(data);
     })
     .catch(err => {
         res.status(500).send({
@@ -40,11 +40,11 @@ exports.criarCaso = (req, res) => {
 
 // Recupera todos Casos do banco de dados
 exports.listarTodosCasos = (req, res) => {
-    const status = req.query.status;
-    var condition = status ? { status: { [Op.like]: `%${status}%` } } : null;
-    Caso.findAll({ where: condition })
-    .then(data => {
-        res.send(data);
+    var stringQuery = `SELECT * FROM "Caso"`;
+
+    Caso.sequelize.query(stringQuery)
+    .then(([results, metadata]) => {
+        res.status(200).send(results);
     })
     .catch(err => {
         res.status(500).send({
@@ -57,30 +57,40 @@ exports.listarTodosCasos = (req, res) => {
 // Procura um unico Caso baseado no seu ID
 exports.procurarCasoPorId = (req, res) => {
     const id = req.params.id;
-    Caso.findByPk(id)
-    .then(data => {
-        if (data) {
-            res.send(data);
+    var stringQuery = `SELECT * FROM "Caso" WHERE id_caso = $id`;
+
+    Caso.sequelize.query(stringQuery, {bind: {id}})
+    .then(([results, metadata]) => {
+        if (metadata.rowCount == 1) {
+            res.status(200).send(results);
         }
         else {
             res.status(404).send({
-                message: `Não foi possível achar um caso com id = ${id}.`
+                message: `Não foi possível achar um caso com este id!`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Erro ao recuperar caso com id = " + id
+            message: "Erro ao recuperar caso com este id"
         });
     });
 };
 
 exports.procurarCasoPorUsuario = (req, res) => {
     const id_usuario = req.params.id;
-    var condition = id_usuario ? { id_usuario: { [Op.eq]: `${id_usuario}` } } : null;
-    Caso.findAll({ where: condition })
-    .then(data => {
-        res.send(data);
+    var queryString = `SELECT * FROM "Caso" WHERE id_usuario = $id_usuario`;
+
+    Caso.sequelize.query(queryString, {bind: {id_usuario}})
+    .then(([results, metadata]) => {
+        if(metadata.rowCount > 0){
+            res.status(200).send(results);
+        }
+        else{
+            res.status(404).send({
+                message: "Não existe casos para este usuário!"
+            });
+        }
     })
     .catch(err => {
         res.status(500).send({
@@ -104,13 +114,13 @@ exports.atualizarCaso = (req, res) => {
         }
         else {
             res.send({
-                message: `Não é possível atualizar Caso com id = ${id}. Talvez o Caso não foi encontrado ou o body da requisição está vazio!`
+                message: `Não é possível atualizar um caso com este id, talvez o caso não foi encontrado ou o body da requisição está vazio!`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Erro ao atualizar Caso com id = " + id
+            message: "Erro ao atualizar o caso com este id!"
         });
     });
 };
@@ -118,24 +128,24 @@ exports.atualizarCaso = (req, res) => {
 // Deleta um Caso com o respectivo ID na requisicao
 exports.deletarCaso = (req, res) => {
     const id = req.params.id;
-    Caso.destroy({
-        where: { id_caso: id }
-    })
-    .then(num => {
-        if (num == 1) {
-            res.send({
+    var queryString = `DELETE FROM "Caso" WHERE id_caso = $id`;
+
+    Caso.sequelize.query(queryString, {bind: {id}})
+    .then(([results, metadata]) => {
+        if (metadata.rowCount == 1) {
+            res.status(200).send({
                 message: "Caso foi removido com sucesso!"
             });
         }
         else {
-            res.send({
-                message: `Não foi possível remover Caso com id = ${id}. Talvez o Caso não exista!`
+            res.status(404).send({
+                message: `Não foi possível remover o caso com este id, talvez o caso não exista!`
             });
         }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Não foi possível remover o caso com id = " + id
+        message: "Não foi possível remover o caso com este id"
       });
     });
 };
