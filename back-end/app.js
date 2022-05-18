@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true })); // parse requests of content-ty
 
 /* db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
-}); */
+});*/
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
