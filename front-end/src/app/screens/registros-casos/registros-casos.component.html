@@ -1,0 +1,14 @@
+<main class="d-flex flex-column align-items-center">
+      <h1>Qual o tipo de animal doméstico você perdeu? </h1>
+      <div class="img" style="width: 840px; height: 500px; text-align:center;margin:0; padding:0;">
+            <ng-image-slider #nav
+            class="rounded-circle"
+                  [images]="imageObject"
+                  [infinite]="false"
+                  [autoSlide]="1"
+                  [imageSize]="{width: '25%', height: 200}"
+                  slideImage="1"></ng-image-slider>
+
+                  <app-geolocation-card></app-geolocation-card>
+      </div>
+</main>
