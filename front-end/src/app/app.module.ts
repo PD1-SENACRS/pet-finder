@@ -1,3 +1,4 @@
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { GeolocationCardComponent } from './screens/registros-casos/cards/geolocation-card/geolocation-card.component';
 import { RegistrosCasosComponent } from './screens/registros-casos/registros-casos.component';
 import { NgModule } from '@angular/core';
@@ -19,13 +20,15 @@ import { GoogleMapsModule } from '@angular/google-maps'
     HomeComponent,
     ProfileComponent,
     RegistrosCasosComponent, 
-    GeolocationCardComponent
+    GeolocationCardComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgImageSliderModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

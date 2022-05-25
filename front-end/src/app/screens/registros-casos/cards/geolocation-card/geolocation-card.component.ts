@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 } )
 export class GeolocationCardComponent implements OnInit {
 
+
+
+  
+
   zoom = 12
 
   options: google.maps.MapOptions = {

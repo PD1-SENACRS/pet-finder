@@ -1,0 +1,16 @@
+<google-map
+  height="100vh"
+  width="100%"
+  [zoom]="zoom"
+  [center]="center"
+  [options]="options"
+  (mapClick)="pegaMarcadorDoMouseClick($event)">
+  <map-marker #markerElem
+  *ngFor="let marker of markers"
+  [position]="marker.position"
+  [label]="marker.label"
+  [title]="marker.title"
+  [options]="marker.options"
+  
+  ></map-marker>
+</google-map>

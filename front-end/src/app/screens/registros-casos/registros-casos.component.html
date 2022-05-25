@@ -7,8 +7,16 @@
                   [infinite]="false"
                   [autoSlide]="1"
                   [imageSize]="{width: '25%', height: 200}"
+                  [imagePopup]="true"
+                  (imageClick)="callMap($event)"
                   slideImage="1"></ng-image-slider>
 
-                  <app-geolocation-card></app-geolocation-card>
+
+                  <app-geolocation-card *ngIf="novoCaso.tipo_animal" >
+
+
+                  </app-geolocation-card>
+                  
+
       </div>
 </main>
