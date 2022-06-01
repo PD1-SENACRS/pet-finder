@@ -4,13 +4,17 @@
   [zoom]="zoom"
   [center]="center"
   [options]="options"
-  (mapClick)="pegaMarcadorDoMouseClick($event)">
-  <map-marker #markerElem
-  *ngFor="let marker of markers"
-  [position]="marker.position"
-  [label]="marker.label"
-  [title]="marker.title"
-  [options]="marker.options"
-  
-  ></map-marker>
+ >
+  <map-marker id="Marker" #markerElem
+    *ngFor="let marker of markers"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+    [clickable]="true"
+    (click)="openInfo('Marker', 'Seila')"
+    
+    >
+    <map-info-window>testeeeeeee</map-info-window>
+  </map-marker>
 </google-map>

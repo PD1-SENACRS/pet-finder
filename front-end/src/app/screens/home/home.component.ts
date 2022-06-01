@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
 			this.center = {
 				lat: -30.026736275902316, //position.coords.latitude,
 				lng: -51.22842297420501,  //position.coords.longitude,
-				zoom: this.zoom
+				zoom: this.zoom,
+				
 			}
 		} )
 
@@ -54,6 +55,7 @@ export class HomeComponent implements OnInit {
 				lat: latitudeDoClick,
 				lng: LongitudeDoClique,
 			},
+			
 			label: {
 				color: 'Black',
 				text: 'Doggo Perdidasso',
@@ -66,9 +68,10 @@ export class HomeComponent implements OnInit {
 		} )
 	}
 
-	openInfo ( marker: MapMarker, content: any ) {
+	openInfo ( marker: MapMarker | any, content: any ) {
 		this.infoContent = content
-		this.info.open( marker )
+		this.info.open()
+		
 	}
 }
 
