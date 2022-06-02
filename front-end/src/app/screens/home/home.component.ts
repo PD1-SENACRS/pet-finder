@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
 
 	markers: any[] = [
 		{
-			
 			position: {
 				lat: -30.026274150043346,
 				lng: -51.22979358301162,
@@ -53,7 +52,7 @@ export class HomeComponent implements OnInit {
 				color: 'Black',
 				text: 'gatito',
 			},
-			title: 'Cãozinho Perdido',
+			title: 'gate',
 			options: {
 				animation: google.maps.Animation.BOUNCE,
 				icon: this.createIconWithPhoto('../../../assets/images/cachorro.jpg')
@@ -69,7 +68,7 @@ export class HomeComponent implements OnInit {
 				color: 'Black',
 				text: 'Doggo Perdidasso',
 			},
-			title: 'Cãozinho Perdido',
+			title: 'teste',
 			options: {
 				animation: google.maps.Animation.BOUNCE,
 				//icon: '../../../assets/images/dog.jpg'
@@ -162,7 +161,9 @@ export class HomeComponent implements OnInit {
 
 	}
 
-	openInfoWindow ( marker: MapMarker ) {
+	openInfoWindow ( marker: MapMarker, content: string ) {
+		console.log(this.infoContent)
+		this.infoContent = content
 		this.infoWindow.open( marker );
 	}
 

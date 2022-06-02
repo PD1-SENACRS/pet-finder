@@ -1,20 +1,19 @@
 <google-map
-  height="100vh"
-  width="100%"
-  [zoom]="zoom"
-  [center]="center"
-  [options]="options"
-  (mapClick)="pegaMarcadorDoMouseClick($event)">
-  <map-marker  #marker="mapMarker"
-    *ngFor="let marke of markers"
-    [position]="marke.position"
-    [label]="marke.label"
-    [title]="marke.title"
-    [options]="marke.options" 
-    (mapClick)="openInfoWindow(marker)"
-    >
-    <map-info-window>{{marke.info}}</map-info-window>
-  </map-marker>
-  
+	height="100vh"
+	width="100%"
+	[zoom]="zoom"
+	[center]="center"
+	[options]="options"
+	(mapClick)="pegaMarcadorDoMouseClick($event)">
+	<map-marker #marker="mapMarker"
+		*ngFor="let marke of markers"
+		
+		[position]="marke.position"
+		[label]="marke.label"
+		[title]="marke.title"
+		[options]="marke.options"
+		(mapClick)="openInfoWindow(marker, marke.title)">
+		<map-info-window>{{ infoContent }}</map-info-window>
+	</map-marker>
 </google-map>
 <!-- <button (click)="teste()"></button> -->
