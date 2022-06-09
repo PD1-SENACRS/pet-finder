@@ -1,20 +1,28 @@
+import { ICaso } from './../registros-casos/models/ICaso';
+import { RetCasos } from './../registros-casos/models/RetCaso';
+import { HomeService } from './home.service';
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { Observable, of } from 'rxjs';
 
 @Component( {
 	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrls: [ './home.component.scss' ]
 } )
-export class HomeComponent implements OnInit {
-	constructor ( bsModalService: BsModalService ) {
+export class HomeComponent implements OnInit
+{
+	constructor ( bsModalService: BsModalService,
+		private homeService: HomeService )
+	{
 
-	}
-
-
+	}	
+	googleInstance: google.maps.LatLng = new google.maps.LatLng(-34, 151);
 	@ViewChild( GoogleMap, { static: false } ) map: GoogleMap | any
 	@ViewChild( MapInfoWindow ) infoWindow!: MapInfoWindow;
+
+	contentString = ''
 	options: google.maps.MapOptions = {
 		mapTypeId: 'roadmap',
 		zoomControl: false,
@@ -23,7 +31,7 @@ export class HomeComponent implements OnInit {
 		maxZoom: 22,
 		minZoom: 8,
 	}
-
+	listaCasos: RetCasos = new RetCasos()
 
 	markers: any[] = [
 		{
@@ -48,14 +56,11 @@ export class HomeComponent implements OnInit {
 				lng: -51.227953587627404,
 			},
 			info: "doguito",
-			label: {
-				color: 'Black',
-				text: 'gatito',
-			},
-			title: 'gate',
+
+			title: "title",
 			options: {
 				animation: google.maps.Animation.BOUNCE,
-				icon: this.createIconWithPhoto('../../../assets/images/cachorro.jpg')
+				icon: this.createIconWithPhoto( '../../../assets/images/coelho.jpg' )
 			},
 		},
 		{
@@ -68,10 +73,10 @@ export class HomeComponent implements OnInit {
 				color: 'Black',
 				text: 'Doggo Perdidasso',
 			},
-			title: 'teste',
+			title: '../../../assets/images/cachorro.jpg',
 			options: {
 				animation: google.maps.Animation.BOUNCE,
-				//icon: '../../../assets/images/dog.jpg'
+				icon: this.createIconWithPhoto( '../../../assets/images/cachorro.jpg' )
 			},
 		}
 
@@ -80,8 +85,10 @@ export class HomeComponent implements OnInit {
 	zoom = 18
 	center: any;
 
-	ngOnInit (): void {
-		navigator.geolocation.getCurrentPosition( ( position ) => {
+	ngOnInit (): void
+	{
+		navigator.geolocation.getCurrentPosition( ( position ) =>
+		{
 			this.center = {
 				lat: -30.026736275902316, //position.coords.latitude,
 				lng: -51.22842297420501,  //position.coords.longitude,
@@ -89,20 +96,21 @@ export class HomeComponent implements OnInit {
 
 			}
 		} )
+		this.getListaMarcadores()
 
+		// this.lerListaMarkers()
 		// this.addMarker( -30.026736275902316, -51.22842297420501 )
 
 	}
 
-	createIconWithPhoto (picture: any) {
-
+	createIconWithPhoto ( picture: any )
+	{
 		var canvas = document.createElement( "canvas" );
 		canvas.width = 40;
 		canvas.height = 50;
 		var context = canvas.getContext( "2d" );
 		context!.fillStyle = "rgb(193,101,214)";
 		context!.beginPath();
-
 		context!.moveTo( 0, 0 );
 		context!.lineTo( 40, 0 );
 		context!.lineTo( 40, 40 );
@@ -111,29 +119,27 @@ export class HomeComponent implements OnInit {
 		context!.lineTo( 15, 40 );
 		context!.lineTo( 0, 40 );
 		context!.fill();
-
 		var img = new Image();
 		img.src = picture;
 		context!.drawImage( img, 2, 2, 36, 36 );
 		return canvas.toDataURL();
 	}
 
-
-
-
-
-	pegaMarcadorDoMouseClick ( event: google.maps.MapMouseEvent ) {
+	pegaMarcadorDoMouseClick ( event: google.maps.MapMouseEvent )
+	{
 
 		console.log( event.latLng?.lat(), event.latLng?.lng() )
 		// this.addMarker(  )
 
 	}
 
-	teste () {
+	teste ()
+	{
 		console.log( this.markers )
 	}
 
-	addMarker () {
+	addMarker ()
+	{
 		this.markers.push( {
 			position: {
 				lat: -30.02603263617451,
@@ -154,17 +160,33 @@ export class HomeComponent implements OnInit {
 		} )
 	}
 
-	openInfo ( marker: MapMarker | HTMLElement, content: any ) {
+	openInfo ( marker: MapMarker | HTMLElement, content: any )
+	{
 		this.infoContent = content
 		this.infoWindow.open()
 		console.log( 'teste' )
 
 	}
 
-	openInfoWindow ( marker: MapMarker, content: string ) {
-		console.log(this.infoContent)
+	openInfoWindow ( marker: MapMarker, content: string )
+	{
+		console.log( this.infoContent )
 		this.infoContent = content
 		this.infoWindow.open( marker );
+	}
+
+	getListaMarcadores ()
+	{
+		this.homeService.getListaMarcadores().subscribe(
+			( value ) =>
+			{
+				this.listaCasos = value;
+				console.log( this.listaCasos )
+				
+			}
+
+		)
+
 	}
 
 

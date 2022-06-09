@@ -1,13 +1,14 @@
-export interface ICaso { 
-     
-            status: "Encontrado" | "Perdido",
-            data_caso: Date,
-            tipo_animal: String,
-            raca: String,
-            nome_animal: String,
-            imagem: String,
-            latitude: number,
-            longitude: number
-        
+export interface ICaso {
+
+      id_caso: number
+      status: "Encontrado" | "Perdido",
+      data_caso: Date,
+      tipo_animal: string,
+      raca: string,
+      nome_animal: string,
+      imagem: string,
+      latitude: any,
+      longitude: any
+
 
 }

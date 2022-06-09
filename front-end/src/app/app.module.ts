@@ -9,7 +9,11 @@ import { LoginComponent } from './screens/login/login.component';
 import { HomeComponent } from './screens/home/home.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { NgImageSliderModule } from 'ng-image-slider';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { SignupComponent } from './screens/signup/signup.component'
+import { HttpClientModule } from '@angular/common/http';
+import { PerdaFormComponent } from './screens/perda-form/perda-form.component';
+import { EncontraFormComponent } from './screens/encontra-form/encontra-form.component';
 
 
 // import { AgmCoreModule } from '@agm/core';
@@ -20,7 +24,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
     HomeComponent,
     ProfileComponent,
     RegistrosCasosComponent, 
-    GeolocationCardComponent,
+    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent,
     
   ],
   imports: [
@@ -29,6 +33,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
     NgImageSliderModule,
     GoogleMapsModule,
     ModalModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

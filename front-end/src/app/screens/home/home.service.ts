@@ -1,84 +1,74 @@
+import { ICaso } from './../registros-casos/models/ICaso';
+import { Caso } from './../registros-casos/models/Caso';
+import { Observable, take, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { RetCasos } from '../registros-casos/models/RetCaso';
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
-export class HomeService {
-//todo 
-  private readonly baseURL: string = "URL DE REQUISIÇÃO";
+} )
+export class HomeService
+{
+  //todo 
+  private readonly baseURL: string = "https://pd1-api2.herokuapp.com/api/casos";
 
-  constructor() { }
+
+  constructor ( public httpClient: HttpClient ) { }
+
+  getListaMarcadores (): Observable<RetCasos>
+  {
+    const headers = new HttpHeaders()
+      .set( 'Content-Type', 'application/json' )
+      .set('Access-Control-Allow-Origin', '*')
+    
+    
+    const url = this.baseURL
+    console.log(url)
+    return this.httpClient.get<RetCasos>(
+      url,
+      { 'headers': headers } )
+      .pipe(
+        take(1),
+        tap( response =>
+        {
+
+
+
+        } )
+      );
+  }
 }
 
+/* 
+
+getSimulacoes (): Observable<RetSimulaLicenca> {
+  const authorization = 'Basic ' + btoa( environment.SpRhFun3WebService_user + ':' + environment.SpRhFun3WebService_psw );
+// linhas para testar os endpoints que ainda não estão publicados
+// const authorizationTest = 'Basic ' + btoa( "m" + ':' + "m" );
+// const url = `http://localhost:44384/api/simulacao/GetSimularLicencaPreparation?dominio=${ this.authService.dominio }&infraUsuarioId=${ this.authService.infraUsuarioId }`;
+
+const headers = new HttpHeaders()
+  .set( 'Content-Type', 'application/json' )
+  .set( 'Authorization', authorization );
+
+const url = `${ this.baseWorkFlow }/GetSimularLicencaPreparation?dominio=${ this.authService.dominio }&infraUsuarioId=${ this.authService.infraUsuarioId }`;
+
+return this.httpClient.get<RetSimulaLicenca>(
+  url,
+  { 'headers': headers } )
+  .pipe(
+          take( 1 ),
+          tap( response => {
+
+                  if ( response.Error )
+                  {
+                          throw Error( response.ErrorMessage );
+                  }
+
+          } )
+  );
+
+} */
 
 
-
-// import { environment } from '../../../environments/environment';
-// import { Observable } from 'rxjs';
-// import { Injectable } from '@angular/core';
-// import { HttpClient, HttpParams } from '@angular/common/http';
-// import { RetCrpPessoa } from 'src/app/project/services/crp-pessoa/models/ret-crp-pessoa';
-// import { Filtro } from './models/Filtro/filtro-avançado';
-// import { PessoasScreen } from './models/pessoas-screen';
-// import { RetPessoas } from './models/ret-pessoas';
-// import { RetDadosBasicosTab } from './models/ret-dados-basicos-tab';
-
-// @Injectable({
-// 	providedIn: 'root',
-// })
-// @Injectable()
-// export class PessoaScreenService {
-// 	private readonly baseURL: string = `${environment.SpInfraCtr3CtrWebService}/pessoas-screen`;
-// 	private readonly apiPostPessoaScreen: string = 'dados-basicos';
-// 	private apiGetCrpPessoa: string = 'crp-pessoas'
-	
-// 	constructor(public httpClient: HttpClient) {
-// 	}
-
-	
-// 	criarPessoa(data: PessoasScreen): Observable<RetCrpPessoa> {
-// 		const url = `${ this.baseURL }/${ this.apiPostPessoaScreen }`;
-
-// 		return this.httpClient
-// 			.post<RetCrpPessoa>(url, data);
-// 	}
-
-
-// 	getListaPessoas(filtro: Filtro): Observable<RetPessoas> {
-// 		let params = new HttpParams();
-// 		if (filtro.filtroCidade !== 0) {
-// 			params = params.set('cidade', filtro.filtroCidade.toString())
-// 		}
-// 		if (filtro.pesquisaTexto.trim() !== '') {
-// 			params = params.set('pesquisa', filtro.pesquisaTexto.toString())
-// 		}
-// 		if (filtro.filtroEstado !== 0) {
-// 			params = params.set('estado', filtro.filtroEstado.toString())
-// 		}
-// 		if (filtro.filtroPapeis.length !== 0) {
-// 			params = params.set('papeis', filtro.filtroPapeis.join(","))
-// 		}
-
-// 		params = params.set('is_active', filtro.filtroIsActive)
-
-// 		const url = `${this.baseURL}`;
-
-// 		return this.httpClient
-// 			.get<RetPessoas>(url, {
-// 				params
-// 			});
-// 	}
-
-// 	/**
-// 	 * Pega os dados básicos da tab de dados básicos.
-// 	 * 
-// 	 * @param id Id da pessoa onde os dados básicos serão pegos.
-// 	 * @returns Chamada que deve retornar os dados básicos.
-// 	 */
-// 	getDadosBasicosTab(id: string): Observable<RetDadosBasicosTab> {
-// 		const url = `${this.baseURL}/basic-data-tab/${id}`;
-
-// 		return this.httpClient.get<RetDadosBasicosTab>(url);
-// 	}
-// }
