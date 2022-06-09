@@ -14,6 +14,7 @@ import { SignupComponent } from './screens/signup/signup.component'
 import { HttpClientModule } from '@angular/common/http';
 import { PerdaFormComponent } from './screens/perda-form/perda-form.component';
 import { EncontraFormComponent } from './screens/encontra-form/encontra-form.component';
+import { ListarCasosComponent } from './screens/listar-casos/listar-casos.component';
 
 
 // import { AgmCoreModule } from '@agm/core';
@@ -24,7 +25,7 @@ import { EncontraFormComponent } from './screens/encontra-form/encontra-form.com
     HomeComponent,
     ProfileComponent,
     RegistrosCasosComponent, 
-    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent,
+    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent, ListarCasosComponent,
     
   ],
   imports: [
