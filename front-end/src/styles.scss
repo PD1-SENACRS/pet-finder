@@ -52,6 +52,12 @@ body {
       color: #212529;
 }
 
+h1{
+      font-size: 25px;
+      color: #414141;
+      margin-bottom: 2rem;
+}
+
 .card {
       .card-header {
             background-color: #fff;
@@ -121,3 +127,36 @@ body {
             transform: rotate(0deg);
       }
 }
+
+.btn-pet-finder{
+      font-weight: 600;
+      border: 2px solid $petfinder-primary;
+      cursor: pointer;
+      color: $petfinder-primary;
+      border-radius: 10px;
+      margin-top: 1rem;
+
+      svg{
+        width: 20px;
+        height: 20px;
+        fill: $petfinder-primary;
+      }
+      &:hover{
+        background-color: $petfinder-primary;
+        color: white;
+        transition: .5s;
+
+            svg{
+                  fill: white;
+                  transition: .5s;
+            }
+      }
+}
+
+form{
+      .form-control:focus{
+          border-color: $petfinder-primary;
+          box-shadow: none;
+          transition: .5s;
+      }
+  }

@@ -8,7 +8,8 @@ import { LoginComponent } from './screens/login/login.component';
 import { HomeComponent } from './screens/home/home.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { NgImageSliderModule } from 'ng-image-slider';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { RegisterUserComponent } from './screens/register-user/register-user.component';
 
 
 // import { AgmCoreModule } from '@agm/core';
@@ -19,7 +20,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
     HomeComponent,
     ProfileComponent,
     RegistrosCasosComponent, 
-    GeolocationCardComponent
+    GeolocationCardComponent, RegisterUserComponent
   ],
   imports: [
     BrowserModule,

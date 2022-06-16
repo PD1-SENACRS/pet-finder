@@ -8,7 +8,7 @@ import { FormBuilder } from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(privateformBuilder:FormBuilder) { 
+  constructor() { 
     // this.loginForm=this.formBuilder.group({
     //   email:['',[Validators.required,Validators.email]],
     //   password:['',[Validators.required,Validators.minLength(8)]]
