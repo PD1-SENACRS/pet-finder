@@ -35,6 +35,9 @@ const routes: Routes = [
   },
   {
     path: 'registrar-usuario', component: RegisterUserComponent
+  },
+  {
+    path: 'login', component: LoginComponent
   }
 
 ];
