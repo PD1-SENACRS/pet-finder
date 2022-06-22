@@ -1,6 +1,6 @@
 export class Caso {
     _id_caso!: number;
-    status: string = "";
+    status: string = "Perdido";
     data_caso: string = "";
     tipo_animal: string = "";
     raca: string = "";

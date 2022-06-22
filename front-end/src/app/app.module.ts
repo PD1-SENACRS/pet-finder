@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PerdaFormComponent } from './screens/perda-form/perda-form.component';
 import { EncontraFormComponent } from './screens/encontra-form/encontra-form.component';
 import { ListarCasosComponent } from './screens/listar-casos/listar-casos.component';
+import { FormsModule } from '@angular/forms';
 
 
 // import { AgmCoreModule } from '@agm/core';
@@ -33,7 +34,8 @@ import { ListarCasosComponent } from './screens/listar-casos/listar-casos.compon
     NgImageSliderModule,
     GoogleMapsModule,
     ModalModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
