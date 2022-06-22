@@ -24,9 +24,8 @@ import { ListarCasosComponent } from './screens/listar-casos/listar-casos.compon
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-    RegistrosCasosComponent, 
-    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent, ListarCasosComponent,
-    
+    RegistrosCasosComponent,
+    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent,ListarCasosComponent
   ],
   imports: [
     BrowserModule,

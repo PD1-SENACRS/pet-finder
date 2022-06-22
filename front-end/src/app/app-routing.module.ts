@@ -4,8 +4,10 @@ import { RegistrosCasosComponent } from './screens/registros-casos/registros-cas
 import { ProfileComponent } from './screens/profile/profile.component';
 import { HomeComponent } from './screens/home/home.component';
 import { LoginComponent } from './screens/login/login.component';
+import { ListarCasosComponent } from './screens/listar-casos/listar-casos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 
 const routes: Routes = [
 
@@ -26,7 +28,9 @@ const routes: Routes = [
   },
   {
     path: 'registros-casos', component: RegistrosCasosComponent,
-
+  },
+  {
+    path: 'listar-casos', component: ListarCasosComponent,
   },
 
 ];
