@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-RegisterUserComponent
+    RegisterUserComponent,
     RegistrosCasosComponent,
     GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent,ListarCasosComponent
   ],
