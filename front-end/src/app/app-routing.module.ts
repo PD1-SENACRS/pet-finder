@@ -7,6 +7,7 @@ import { LoginComponent } from './screens/login/login.component';
 import { ListarCasosComponent } from './screens/listar-casos/listar-casos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterUserComponent } from './screens/register-user/register-user.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,9 @@ const routes: Routes = [
   {
     path: 'listar-casos', component: ListarCasosComponent,
   },
+  {
+    path: 'registrar-usuario', component: RegisterUserComponent
+  }
 
 ];
 

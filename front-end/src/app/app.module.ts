@@ -10,14 +10,13 @@ import { HomeComponent } from './screens/home/home.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { RegisterUserComponent } from './screens/register-user/register-user.component';
 import { SignupComponent } from './screens/signup/signup.component'
 import { HttpClientModule } from '@angular/common/http';
 import { PerdaFormComponent } from './screens/perda-form/perda-form.component';
 import { EncontraFormComponent } from './screens/encontra-form/encontra-form.component';
 import { ListarCasosComponent } from './screens/listar-casos/listar-casos.component';
 import { FormsModule } from '@angular/forms';
-
-
 // import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
@@ -25,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
+RegisterUserComponent
     RegistrosCasosComponent,
     GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent,ListarCasosComponent
   ],

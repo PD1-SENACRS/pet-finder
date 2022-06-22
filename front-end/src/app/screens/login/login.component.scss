@@ -1,0 +1,18 @@
+$petfinder-primary:#43C6AC;
+$petfinder-accent: #191645;
+
+#page-login{
+    margin: 8rem auto;
+    .section-form{
+        width: 40%;
+        margin: 0 auto;
+        padding: 3rem;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 1px 1px 5px #ccc;
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+    }
+}
