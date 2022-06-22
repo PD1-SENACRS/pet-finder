@@ -6,7 +6,7 @@ const db = require("./models");
 
 dotenv.config()
 
-var corsOptions = { origin: "http://localhost:8081" };
+var corsOptions = { origin: "*" };
 app.use(cors(corsOptions));
 app.use(express.json()); // parse requests of content-type - application/json
 app.use(express.urlencoded({ extended: true })); // parse requests of content-type - application/x-www-form-urlencoded
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true })); // parse requests of content-ty
 });*/
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "TESTE API" });
 });
 
 // Incluindo as rotas da API

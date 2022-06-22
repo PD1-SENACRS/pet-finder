@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Caso } from './models/Caso';
 // import { NgImageSliderModule } from 'ng-image-slider';
 @Component( {
   selector: 'app-registros-casos',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './registros-casos.component.scss' ]
 } )
 export class RegistrosCasosComponent implements OnInit {
-
+ 
 
   //#region Variavéis
-
+  novoCaso: Caso = new Caso(); 
 
   //#region ImageSlider
   imageObject = [{
@@ -37,11 +39,17 @@ export class RegistrosCasosComponent implements OnInit {
 
   //#endregion Variavéis
 
-
-  constructor () { }
-
+  constructor (private router: Router) { }
+  
   
   ngOnInit (): void {
   }
+  
+  callMap (  e: number ) {
+    
+    this.novoCaso.tipo_animal = "index da foto"
+  
+    console.log(this.novoCaso)
 
+  }
 }

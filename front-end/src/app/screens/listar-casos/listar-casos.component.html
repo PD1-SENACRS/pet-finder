@@ -1,0 +1,25 @@
+<br>
+<!-- <div class="form-inline my-2 my-lg-0">
+    <input [(ngModel)]="searchResult" class="form-control mr-sm-2" type="search" placeholder="Procurar Caso" aria-label="Search">
+</div> -->
+<br><br>
+<table *ngIf = 'casosList.length > 0' class="table table-hover">
+    <thead>
+    <tr>
+        <td>Data</td>
+        <td>Animal</td>
+        <td>Raça</td>
+        <td>Nome</td>
+        <td>Foto</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = 'let caso of casosList'>
+        <td>{{caso.data_caso}}</td>
+        <td>{{caso.tipo_animal}}</td>
+        <td>{{caso.raca}}</td>
+        <td>{{caso.nome_animal}}</td>
+        <td>{{caso.imagem}}</td>
+    </tr>
+    </tbody>
+</table>

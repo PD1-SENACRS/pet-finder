@@ -1,7 +1,8 @@
 $petfinder-primary:  #43C6AC;
 $petfinder-accent: #191645;
-.main {
+main {
       height: 100vh;
+//     overflow: scroll;
 }
 .sidebar {
       width: 80px !important;

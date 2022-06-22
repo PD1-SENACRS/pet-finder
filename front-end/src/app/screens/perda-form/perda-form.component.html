@@ -1,0 +1,26 @@
+<div class="form-group">
+    <label for='data_caso'> Data </label><br>
+    <input type="text" [(ngModel)]='caso.data_caso' id='data_caso'><br><br>
+</div>
+
+<div class="form-group">
+    <label for='tipo_animal'> Tipo </label><br>
+    <input type="text" [(ngModel)]="caso.tipo_animal" id="tipo_animal"><br><br>
+</div>
+
+<div class="form-group">
+    <label for='raca'> Raça </label><br>
+    <input type="text" [(ngModel)]="caso.raca" id="raca"><br><br>
+</div>
+
+<div class="form-group">
+    <label for='nome_animal'> Nome </label><br>
+    <input type="text" [(ngModel)]="caso.nome_animal" id="nome_animal"><br><br>
+</div>
+
+<div class="form-group">
+    <label for='imagem'> Imagem </label><br>
+    <input type="text" [(ngModel)]="caso.imagem" id="imagem">
+</div>
+
+<button (click)="save()">{{actionButton}}</button>
