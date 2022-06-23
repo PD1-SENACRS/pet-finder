@@ -1,7 +1,7 @@
 export class Caso {
     _id_caso!: number;
     status: string = "";
-    data_caso: string = "";
+    data_caso: Date = new Date();
     tipo_animal: string = "";
     raca: string = "";
     nome_animal: string = "";
