@@ -40,4 +40,17 @@ create table usuario (
     data_alteracao timestamp with time zone NOT NULL
 );
 
+create table raca (
+	id_raca integer not null primary key,
+	id_animal varchar(30),
+	raca varchar(30),
+	imagem varchar(200)
+);
+
+create table animal (
+	id_animal integer not null primary key,
+	animal varchar(30),
+	imagem varchar(200)
+);
+
 
