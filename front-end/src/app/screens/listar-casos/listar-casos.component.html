@@ -1,27 +1,12 @@
-<br>
-<!-- <div class="form-inline my-2 my-lg-0">
-    <input [(ngModel)]="searchResult" class="form-control mr-sm-2" type="search" placeholder="Procurar Caso" aria-label="Search">
-</div> -->
-<br><br>
-<table *ngIf = 'casosList.length > 0' class="table table-hover">
-    <thead>
-    <tr>
-        <td > </td>
-        <td>Data</td>
-        <td>Animal</td>
-        <td>Raça</td>
-        <td>Nome</td>
-        <td>Foto</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor = 'let caso of casosList'>
-        <td ></td>
-        <td>{{caso.data_caso}}</td>
-        <td>{{caso.tipo_animal}}</td>
-        <td>{{caso.raca}}</td>
-        <td>{{caso.nome_animal}}</td>
-        <td>{{caso.imagem}}</td>
-    </tr>
-    </tbody>
-</table>
+<div id="page_casos">
+    <div *ngIf = 'casosList.length > 0' class="container">
+        <div *ngFor = 'let caso of casosList' class="caso-animal">
+            <div class="status">{{caso.status}}</div>
+            <div class="data-caso">{{caso.data_caso | date:'dd/MM/yyyy'}}</div>
+            <div class="tipo-animal">{{caso.tipo_animal}}</div>
+            <div class="raca-animal">{{caso.raca}}</div>
+            <div class="nome-animal">{{caso.nome_animal}}</div>
+            <div class="imagem-animal">{{caso.imagem}}</div>
+        </div>
+    </div>
+</div>

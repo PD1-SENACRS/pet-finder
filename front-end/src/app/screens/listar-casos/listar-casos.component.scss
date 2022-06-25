@@ -1,3 +1,18 @@
-tr {
-     
+#page_casos {
+    margin-top: 2rem;
+    .caso-animal {
+        display: flex;
+        justify-content: space-around;
+        padding: 0.5rem;
+        border: 1px solid #191645;
+        border-radius: 50px;
+        background: #191645;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 1rem;
+    
+        div{
+            width: 20%;
+        }
+    }
 }

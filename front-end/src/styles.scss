@@ -128,7 +128,7 @@ h1{
       }
 }
 
-.btn-pet-finder{
+button.btn-pet-finder{
       font-weight: 600;
       border: 2px solid $petfinder-primary;
       cursor: pointer;
@@ -160,6 +160,8 @@ form{
           transition: .5s;
       }
   }
+
+
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
