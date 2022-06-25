@@ -1,26 +1,52 @@
-<div class="form-group">
-    <label for='data_caso'> Data </label><br>
-    <input type="text" [(ngModel)]='caso.data_caso' id='data_caso'><br><br>
-</div>
+<div class="d-flex flex-row justify-content-between">
+    <div class="m-3">
+        <div class="form-group">
+            <label for='data_caso'> Data </label><br>
+            <input type="text" [(ngModel)]='caso.data_caso' id='data_caso'><br><br>
+        </div>
+        <div class="form-group">
+            <label for='tipo_animal'> Tipo </label><br>
+            <input type="text" [(ngModel)]="caso.tipo_animal" id="tipo_animal"><br><br>
+        </div>
+        <div class="form-group">
+            <label for='raca'> Raça </label><br>
+            <input type="text" [(ngModel)]="caso.raca" id="raca"><br><br>
+        </div>
+        <div class="form-group">
+            <label for='nome_animal'> Nome </label><br>
+            <input type="text" [(ngModel)]="caso.nome_animal" id="nome_animal"><br><br>
+        </div>
+        <div class="form-group">
+            <label for='imagem'> Imagem </label><br>
+            <input type="text" [(ngModel)]="caso.imagem" id="imagem">
+        </div>
+        <button (click)="save()">{{actionButton}}</button>
+    </div>
+    <div class="m-3 w-50 h-50">
+        <google-map
+            
+            [zoom]="zoom"
+            [center]="center"
+            [options]="options"
+            (mapClick)="pegaMarcadorDoMouseClick($event)">
+            <map-marker #marker="mapMarker"
+                *ngFor="let marker of markers "
+                [position]="marker.position "
+                [label]="'teste'"
+                [title]="marker.nome_animal"
+                [options]="options">
+                
+                <!-- <map-info-window>
+                    <div style="height:200px ; width:200px ;"> <img src='../../../assets/images/coelho.jpg' alt=""></div>
+                    <div style="height:200px ; width:200px ;">
+                        <p>Scuby</p>
+                        <p>Coelho</p>
+                        <p>Sem Raça</p>
+                        <p>04/04/2022</p>
+                    </div>
+                </map-info-window> -->
+            </map-marker>
+        </google-map>
+        
 
-<div class="form-group">
-    <label for='tipo_animal'> Tipo </label><br>
-    <input type="text" [(ngModel)]="caso.tipo_animal" id="tipo_animal"><br><br>
 </div>
-
-<div class="form-group">
-    <label for='raca'> Raça </label><br>
-    <input type="text" [(ngModel)]="caso.raca" id="raca"><br><br>
-</div>
-
-<div class="form-group">
-    <label for='nome_animal'> Nome </label><br>
-    <input type="text" [(ngModel)]="caso.nome_animal" id="nome_animal"><br><br>
-</div>
-
-<div class="form-group">
-    <label for='imagem'> Imagem </label><br>
-    <input type="text" [(ngModel)]="caso.imagem" id="imagem">
-</div>
-
-<button (click)="save()">{{actionButton}}</button>

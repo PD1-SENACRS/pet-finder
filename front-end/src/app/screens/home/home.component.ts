@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit
 		private homeService: HomeService )
 	{
 
-	}	
-	googleInstance: google.maps.LatLng = new google.maps.LatLng(-34, 151);
+	}
+	googleInstance: google.maps.LatLng = new google.maps.LatLng( -34, 151 );
 	@ViewChild( GoogleMap, { static: false } ) map: GoogleMap | any
 	@ViewChild( MapInfoWindow ) infoWindow!: MapInfoWindow;
 
@@ -32,9 +32,15 @@ export class HomeComponent implements OnInit
 		minZoom: 8,
 	}
 	listaCasos: RetCasos = new RetCasos()
+	
+	setaPosition ( lat: any, lng: any )
+	{
+		
+	}
 
 	markers: any[] = [
 		{
+			//todo FAZER UM FOR EACH NA LISTA DO GETMARKERS PARA ESSA LISTA AQUI
 			position: {
 				lat: -30.026274150043346,
 				lng: -51.22979358301162,
@@ -129,13 +135,13 @@ export class HomeComponent implements OnInit
 	{
 
 		console.log( event.latLng?.lat(), event.latLng?.lng() )
-		// this.addMarker(  )
+		this.addMarker()
 
 	}
 
-	teste ()
+	teste (opa: any)
 	{
-		console.log( this.markers )
+		console.log( opa )
 	}
 
 	addMarker ()
@@ -180,10 +186,10 @@ export class HomeComponent implements OnInit
 		this.homeService.getListaMarcadores().subscribe(
 			( value ) =>
 			{
-				this.listaCasos = value;
+				this.listaCasos = value
 				console.log( this.listaCasos )
-				
 			}
+
 
 		)
 

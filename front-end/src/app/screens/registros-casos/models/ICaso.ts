@@ -9,6 +9,7 @@ export interface ICaso {
       imagem: string,
       latitude: any,
       longitude: any
+      position: any
 
 
 }

@@ -18,15 +18,15 @@ import { EncontraFormComponent } from './screens/encontra-form/encontra-form.com
 import { ListarCasosComponent } from './screens/listar-casos/listar-casos.component';
 import { FormsModule } from '@angular/forms';
 // import { AgmCoreModule } from '@agm/core';
-@NgModule({
+@NgModule( {
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-RegisterUserComponent
+    RegisterUserComponent,
     RegistrosCasosComponent,
-    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent,ListarCasosComponent
+    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent, ListarCasosComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +38,6 @@ RegisterUserComponent
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
-})
+  bootstrap: [ AppComponent ]
+} )
 export class AppModule { }

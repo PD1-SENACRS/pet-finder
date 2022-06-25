@@ -5,13 +5,14 @@
 	[center]="center"
 	[options]="options"
 	(mapClick)="pegaMarcadorDoMouseClick($event)">
-	<!-- <map-marker #marker="mapMarker"
+	<map-marker #marker="mapMarker"
 		*ngFor="let marke of listaCasos.casos "
-		[position]="marke.latitude"
-		[label]="marke.label"
-		[title]="marke.title"
-		[options]="marke.options"
-		(mapClick)="openInfoWindow(marker, marke.title)">
+		[position]="{lat: -30.026546, lng: -51.228794 }"
+		[label]="{color: 'black', text: 'rs'}"
+		[title]="marke.nome_animal"
+		[options]="options"
+		(mapClick)="openInfoWindow(marker, 'title')">
+		<button (click)="teste(marke.nome_animal)"></button>
 		<map-info-window>
 			<div style="height:200px ; width:200px ;"> <img src='../../../assets/images/coelho.jpg' alt=""></div>
 			<div style="height:200px ; width:200px ;">
@@ -21,6 +22,7 @@
 				<p>04/04/2022</p>
 			</div>
 		</map-info-window>
-	</map-marker> -->
+	</map-marker>
 </google-map>
+<!-- <button (click)="teste(marke.nome_animal)"></button> -->
 <!-- <button (click)="teste()"></button> -->

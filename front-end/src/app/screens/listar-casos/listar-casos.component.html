@@ -6,6 +6,7 @@
 <table *ngIf = 'casosList.length > 0' class="table table-hover">
     <thead>
     <tr>
+        <td > </td>
         <td>Data</td>
         <td>Animal</td>
         <td>Raça</td>
@@ -15,6 +16,7 @@
     </thead>
     <tbody>
     <tr *ngFor = 'let caso of casosList'>
+        <td ></td>
         <td>{{caso.data_caso}}</td>
         <td>{{caso.tipo_animal}}</td>
         <td>{{caso.raca}}</td>
