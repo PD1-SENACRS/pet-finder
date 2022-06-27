@@ -1,8 +1,18 @@
 $petfinder-primary:  #43C6AC;
 $petfinder-accent: #191645;
+::-webkit-scrollbar  {
+      width: 4px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 16px;
+}
 main {
       height: 100vh;
-//     overflow: scroll;
+      overflow: scroll;
+
 }
 .sidebar {
       width: 80px !important;
