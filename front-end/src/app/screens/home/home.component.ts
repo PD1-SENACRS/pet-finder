@@ -25,66 +25,66 @@ export class HomeComponent implements OnInit
 	contentString = ''
 	options: google.maps.MapOptions = {
 		mapTypeId: 'roadmap',
-		zoomControl: false,
+		zoomControl: true,
 		scrollwheel: false,
 		disableDoubleClickZoom: true,
 		maxZoom: 22,
 		minZoom: 8,
 	}
-	listaCasos: RetCasos = new RetCasos()
-	
+	listaCasos: ICaso[] = [];
+
 	setaPosition ( lat: any, lng: any )
 	{
-		
+
 	}
 
 	markers: any[] = [
-		{
-			//todo FAZER UM FOR EACH NA LISTA DO GETMARKERS PARA ESSA LISTA AQUI
-			position: {
-				lat: -30.026274150043346,
-				lng: -51.22979358301162,
-			},
-			info: "ksksks",
-			label: {
-				color: 'Black',
-				text: 'rs',
-			},
-			title: 'Cãozinho Perdido',
-			options: {
-				animation: google.maps.Animation.BOUNCE,
-				// icon: '../../../assets/images/coelho.jpg'
-			},
-		},
-		{
-			position: {
-				lat: -30.025823633313102,
-				lng: -51.227953587627404,
-			},
-			info: "doguito",
+		// {
+		// 	//todo FAZER UM FOR EACH NA LISTA DO GETMARKERS PARA ESSA LISTA AQUI
+		// 	position: {
+		// 		lat: -30.026274150043346,
+		// 		lng: -51.22979358301162,
+		// 	},
+		// 	info: "ksksks",
+		// 	label: {
+		// 		color: 'Black',
+		// 		text: 'rs',
+		// 	},
+		// 	title: 'Cãozinho Perdido',
+		// 	options: {
+		// 		animation: google.maps.Animation.BOUNCE,
+		// 		icon: '../../../assets/images/coelho.jpg'
+		// 	},
+		// },
+		// {
+		// 	position: {
+		// 		lat: -30.025823633313102,
+		// 		lng: -51.227953587627404,
+		// 	},
+		// 	info: "doguito",
 
-			title: "title",
-			options: {
-				animation: google.maps.Animation.BOUNCE,
-				icon: this.createIconWithPhoto( '../../../assets/images/coelho.jpg' )
-			},
-		},
-		{
-			position: {
-				lat: -30.02603263617451,
-				lng: -51.22881189451217,
-			},
-			info: "dogers",
-			label: {
-				color: 'Black',
-				text: 'Doggo Perdidasso',
-			},
-			title: '../../../assets/images/cachorro.jpg',
-			options: {
-				animation: google.maps.Animation.BOUNCE,
-				icon: this.createIconWithPhoto( '../../../assets/images/cachorro.jpg' )
-			},
-		}
+		// 	title: "title",
+		// 	options: {
+		// 		animation: google.maps.Animation.BOUNCE,
+		// 		icon: this.createIconWithPhoto( '../../../assets/images/coelho.jpg' )
+		// 	},
+		// },
+		// {
+		// 	position: {
+		// 		lat: -30.02603263617451,
+		// 		lng: -51.22881189451217,
+		// 	},
+		// 	info: "dogers",
+		// 	label: {
+		// 		color: 'Black',
+		// 		text: 'Doggo Perdidasso',
+		// 	},
+		// 	title: '../../../assets/images/cachorro.jpg',
+		// 	options: {
+		// 		animation: google.maps.Animation.BOUNCE,
+		// 		icon: this.createIconWithPhoto( '../../../assets/images/cachorro.jpg' )
+		// 	},
+		// }
 
 	];
 	infoContent = '';
@@ -104,8 +104,36 @@ export class HomeComponent implements OnInit
 		} )
 		this.getListaMarcadores()
 
-		// this.lerListaMarkers()
-		// this.addMarker( -30.026736275902316, -51.22842297420501 )
+
+	}
+
+	setListaMarkers ( listaToMarkers: ICaso[] )
+	{
+
+		listaToMarkers.forEach( element =>
+		{
+			this.markers.push( {
+				position: {
+					lat: element.latitude,
+					lng: element.longitude
+				},
+				info: "",
+				label: {
+					color: 'black',
+					text: element.tipo_animal
+					
+				},
+				title: element.nome_animal,
+				options: {
+					animation: google.maps.Animation.BOUNCE,
+					icon: '../../../assets/images/pinDog.png',
+					 
+				},
+			} )
+
+
+
+		} );
 
 	}
 
@@ -139,31 +167,30 @@ export class HomeComponent implements OnInit
 
 	}
 
-	teste (opa: any)
+	teste ( opa: any )
 	{
 		console.log( opa )
 	}
 
 	addMarker ()
 	{
-		this.markers.push( {
-			position: {
-				lat: -30.02603263617451,
-				lng: -51.22881189451217,
-			},
-			info: "doguito",
-			label: {
-				color: 'Black',
-				text: 'Doggo Perdidasso',
-			},
-			title: 'Cãozinho Perdido' + ( this.markers.length + 1 ),
+		// this.markers.push( {
+		// 	position: {
+		// 		lat: -30.02603263617451,
+		// 		lng: -51.22881189451217,
+		// 	},
+		// 	info: "doguito",
+		// 	label: {
+		// 		color: 'Black',
+		// 		text: 'Doggo Perdidasso',
+		// 	},
+		// 	title: 'Cãozinho Perdido' + ( this.markers.length + 1 ),
 
-			options: {
-				animation: google.maps.Animation.BOUNCE,
+		// 	options: {
+		// 		animation: google.maps.Animation.BOUNCE
+		// 	},
 
-			},
-
-		} )
+		// } )
 	}
 
 	openInfo ( marker: MapMarker | HTMLElement, content: any )
@@ -187,6 +214,7 @@ export class HomeComponent implements OnInit
 			( value ) =>
 			{
 				this.listaCasos = value
+				this.setListaMarkers( this.listaCasos )
 				console.log( this.listaCasos )
 			}
 

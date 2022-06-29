@@ -16,7 +16,7 @@ export class HomeService
 
   constructor ( public httpClient: HttpClient ) { }
 
-  getListaMarcadores (): Observable<RetCasos>
+  getListaMarcadores (): Observable<ICaso[]>
   {
     const headers = new HttpHeaders()
       .set( 'Content-Type', 'application/json' )
@@ -25,7 +25,7 @@ export class HomeService
     
     const url = this.baseURL
     console.log(url)
-    return this.httpClient.get<RetCasos>(
+    return this.httpClient.get<ICaso[]>(
       url,
       { 'headers': headers } )
       .pipe(
