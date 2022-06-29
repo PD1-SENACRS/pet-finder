@@ -17,6 +17,7 @@ import { PerdaFormComponent } from './screens/perda-form/perda-form.component';
 import { EncontraFormComponent } from './screens/encontra-form/encontra-form.component';
 import { ListarCasosComponent } from './screens/listar-casos/listar-casos.component';
 import { FormsModule } from '@angular/forms';
+import { CasoDetalhadoComponent } from './screens/caso-detalhado/caso-detalhado.component';
 // import { AgmCoreModule } from '@agm/core';
 @NgModule( {
   declarations: [
@@ -26,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     RegisterUserComponent,
     RegistrosCasosComponent,
-    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent, ListarCasosComponent
+    GeolocationCardComponent, SignupComponent, PerdaFormComponent, EncontraFormComponent, ListarCasosComponent, CasoDetalhadoComponent
   ],
   imports: [
     BrowserModule,

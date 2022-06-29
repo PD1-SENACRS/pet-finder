@@ -7,14 +7,14 @@
             <div class="section-form m-3">
                 <h1>Informe os dados do caso</h1>
                 <div>
-                    <div class="form-group">
-                        <!-- <label for="email" style="display:none;">Email</label> -->
+                    <!-- <div class="form-group">
+                        <label for="email" style="display:none;">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="Digite o seu e-mail">
                     </div>
                     <div class="form-group">
-                        <!-- <label for="password" style="display:none;">Senha</label> -->
+                        <label for="password" style="display:none;">Senha</label>
                         <input type="password" class="form-control" id="password" placeholder="Digite a sua senha">
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <!-- <label for='data_caso'> Data </label> -->
                         <input type="date" placeholder="Data" class="form-control" [(ngModel)]='caso.data_caso' id='data_caso'>
@@ -25,15 +25,15 @@
                     </div>
                     <div class="form-group">
                         <!-- <label for='raca'> Raça </label> -->
-                        <input type="text" class="form-control" [(ngModel)]="caso.raca" id="raca">
+                        <input type="text" placeholder="Raça" class="form-control" [(ngModel)]="caso.raca" id="raca">
                     </div>
                     <div class="form-group">
                         <!-- <label for='nome_animal'> Nome </label> -->
-                        <input type="text" class="form-control" [(ngModel)]="caso.nome_animal" id="nome_animal">
+                        <input type="text" placeholder="Nome do animal" class="form-control" [(ngModel)]="caso.nome_animal" id="nome_animal">
                     </div>
                     <div class="form-group">
                         <!-- <label for='imagem'> Imagem </label> -->
-                        <input type="text" class="form-control" [(ngModel)]="caso.imagem" id="imagem">
+                        <input type="file" class="form-control" [(ngModel)]="caso.imagem" id="imagem">
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
                         <button type="submit" class="btn btn-pet-finder btn-login " (click)="save()">Registar perda <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
