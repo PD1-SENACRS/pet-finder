@@ -13,7 +13,7 @@ import { CasoService } from './perda_form.service';
 export class PerdaFormComponent implements OnInit
 {
 
-  markers:  any[] = [];
+  markers: any[] = [];
   caso: Caso = new Caso();
   message = "";
   actionButton = "Register";
@@ -44,8 +44,8 @@ export class PerdaFormComponent implements OnInit
   {
     this.casoService.Insert( this.caso ).subscribe( caso =>
     {
-      console.log(this.caso)
-      console.log(caso)
+      console.log( this.caso )
+      console.log( caso )
       this.caso = caso;
       this.message = `${ caso.nome_animal } registered!`;
       this.caso = new Caso();
@@ -56,33 +56,37 @@ export class PerdaFormComponent implements OnInit
   {
     // console.log( this.markers.position)
     this.markers.push( {
-			position: {
-				lat: clat,
-				lng: clng,
-			},
-			info: "doguito",
-			label: {
-				color: 'Black',
-				text: 'Doggo Perdidasso',
-			},
-			title: 'Cãozinho Perdido' + ( this.markers.length + 1 ),
+      position: {
+        lat: clat,
+        lng: clng,
+      },
+      info: "doguito",
+      label: {
+        color: 'Black',
+        text: 'Doggo Perdidasso',
+      },
+      title: 'Cãozinho Perdido' + ( this.markers.length + 1 ),
 
-			options: {
-				animation: google.maps.Animation.BOUNCE,
-			},
-      
-		} )
+      options: {
+        animation: google.maps.Animation.BOUNCE,
+      },
+
+    } )
 
   }
 
   pegaMarcadorDoMouseClick ( event: google.maps.MapMouseEvent )
   {
- 
+
     console.log( event.latLng!.lat(), event.latLng!.lng() )
     this.addMarker( event.latLng!.lat(), event.latLng!.lng() )
     this.caso.latitude = event.latLng!.lat(),
-    this.caso.longitude = event.latLng!.lng()
-    
+      this.caso.longitude = event.latLng!.lng()
+
   }
 
+  setTipoAnimal (value:any)
+  { 
+    this.caso.tipo_animal = value.target.value
+  }
 }

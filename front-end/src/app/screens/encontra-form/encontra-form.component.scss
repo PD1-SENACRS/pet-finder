@@ -1,0 +1,27 @@
+.form_perda {
+
+}
+
+
+#page-login{
+      display: flex;
+      flex-direction: row;
+      .section-form{
+          width: 40%;
+          margin: 0 auto;
+          padding: 3rem;
+          padding-top: 1.5rem;
+          border-radius: 10px;
+          background: #fff;
+          box-shadow: 1px 1px 5px #ccc;
+  
+          .form-group {
+              margin-bottom: 1rem;
+          }
+      }
+  
+      h1{
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+      }
+  }
