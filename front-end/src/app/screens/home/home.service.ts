@@ -10,7 +10,7 @@ import { RetCasos } from '../registros-casos/models/RetCaso';
 } )
 export class HomeService
 {
-  //todo 
+  //TODO 
   private readonly baseURL: string = "https://pd1-api2.herokuapp.com/api/casos";
   private readonly ApiGatos: string = "https://api.thecatapi.com/v1/images/search"
 

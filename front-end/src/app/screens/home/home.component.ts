@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit
 	}
 	googleInstance: google.maps.LatLng = new google.maps.LatLng( -34, 151 );
 	@ViewChild( GoogleMap, { static: false } ) map: GoogleMap | any
-	@ViewChild( MapInfoWindow ) infoWindow!: MapInfoWindow;
+	@ViewChild( MapInfoWindow ) infoWindow!: MapInfoWindow | any;
 
 	contentString = ''
 	options: google.maps.MapOptions = {
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit
 
 	markers: any[] = [
 		// {
-		// 	//todo FAZER UM FOR EACH NA LISTA DO GETMARKERS PARA ESSA LISTA AQUI
+		// 	//TODO FAZER UM FOR EACH NA LISTA DO GETMARKERS PARA ESSA LISTA AQUI
 		// 	position: {
 		// 		lat: -30.026274150043346,
 		// 		lng: -51.22979358301162,
@@ -87,7 +87,9 @@ export class HomeComponent implements OnInit
 		// }
 
 	];
-	infoContent = '';
+	infoContentName = '';
+	infoContentRaca: string = ''
+	infoContentStatus: string =''
 	zoom = 18
 	center: any;
 
@@ -145,12 +147,12 @@ export class HomeComponent implements OnInit
 					lat: element.latitude,
 					lng: element.longitude
 				},
-				info: "",
+				info: element.status,
 				label: {
 					color: 'black',
-					text: ""
+					text: element.raca
 				},
-				title: element,
+				title: element.nome_animal,
 				options: {
 					animation: google.maps.Animation.BOUNCE,
 					icon: this.verificaTipoPin(element),
@@ -193,18 +195,17 @@ export class HomeComponent implements OnInit
 	{
 	}
 
+	openInfoWindow ( marker: MapMarker, marke: any )
+	{ 
+		//TODO fazer a foto vir pra ca
 
-
-	openInfo ( marker: MapMarker | HTMLElement, content: any )
-	{
-		this.infoContent = content
-		this.infoWindow.open()
-	}
-
-	openInfoWindow ( marker: MapMarker, content: string )
-	{
 		
-		this.infoContent = content
+		this.infoWindow.infoWindow.gm_bindings_.maxWidth = 300;
+		this.infoWindow.infoWindow.gm_bindings_.minWidth = 150
+
+		this.infoContentName = marke.title
+		this.infoContentRaca = marke.label.text
+		this.infoContentStatus = marke.info
 		this.infoWindow.open( marker );
 	}
 

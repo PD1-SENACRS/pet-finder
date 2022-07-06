@@ -5,21 +5,25 @@
 	[center]="center"
 	[options]="options"
 	(mapClick)="pegaMarcadorDoMouseClick($event)">
-	<!-- todo Estender o tipo/classe MarMarker pra fazer um map do que vem do server pra esse novo tipo -->
+	<!-- TODO Estender o tipo/classe MarMarker pra fazer um map do que vem do server pra esse novo tipo -->
 	<map-marker #marker="mapMarker"
 		*ngFor="let marke of markers "
 		[position]="marke.position"
-		[label]="marke.label.text"
+		label=''
 		[options]="options"
 		[icon]="marke.options.icon"
-		(mapClick)="openInfoWindow(marker, marke.label.text)">
+		(mapClick)="openInfoWindow(marker, marke)">
 		<map-info-window>
-			<div style="height:200px ; width:200px ;"> <img src='../../../assets/images/coelho.jpg' alt=""></div>
-			<div style="height:200px ; width:200px ;">
-				<span class="row">
-					<h2> nome: </h2>
-					<h2> {{marke.title}}</h2>
-				</span>
+			<div class="d-flex">
+				<img style="height: 150px; width: 150px;" src='../../../assets/images/coelho.jpg' alt="">
+				<!-- </div> -->
+				<!-- <div style="height:100px ; width:300px ;"> -->
+				<div class="m-1 d-flex flex-column infowindow-size">
+					<h5>{{infoContentName}}</h5>
+					<strong>Raça: {{infoContentRaca}}</strong>
+					<span class="d-flex"><strong>Status:  </strong><p [ngClass]="{ 'infowindow-status-lost' : infoContentStatus  == 'Perdido', 'infowindow-status-found' : infoContentStatus  == 'Encontrado'  }">{{infoContentStatus}}</p></span>
+					<a href="">detalhes</a>
+				</div>
 			</div>
 		</map-info-window>
 	</map-marker>

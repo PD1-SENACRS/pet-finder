@@ -1,10 +1,33 @@
 #map {
   height: 100%;
 }
+strong{
+  font-size: 15px;
+}
 
 agm-map {
   height: 100%;
 
+}
+
+h5{
+  font-size: 20px;
+}
+
+.infowindow-status-lost{
+  padding-left: 5px;
+  font-size: 15px;
+font-weight: bold;
+  color: red;
+}
+.infowindow-status-found{
+  padding-left: 5px;
+  font-size: 15px;
+font-weight: bold;
+  color: #43C6AC;
+}
+.infowindow-size{
+  width: 150px;
 }
 
 img {
