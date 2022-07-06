@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Caso } from '../perda-form/Caso';
 import { CasoService } from '../perda-form/perda_form.service';
 
-@Component({
+@Component( {
   selector: 'app-encontra-form',
   templateUrl: './encontra-form.component.html',
-  styleUrls: ['./encontra-form.component.scss']
-})
-export class EncontraFormComponent implements OnInit {markers: any[] = [];
+  styleUrls: [ './encontra-form.component.scss' ]
+} )
+export class EncontraFormComponent implements OnInit
+{
+    markers: any[] = [];
   caso: Caso = new Caso();
   message = "";
   actionButton = "Register";
@@ -31,16 +33,15 @@ export class EncontraFormComponent implements OnInit {markers: any[] = [];
   };
 
   ngOnInit (): void
-  { 
+  {
     this.caso.status = 'Encontrado'
 
   }
   save ()
   {
+    this.caso.status = 'Encontrado'
     this.casoService.Insert( this.caso ).subscribe( caso =>
     {
-      console.log( this.caso )
-      console.log( caso )
       this.caso = caso;
       this.message = `${ caso.nome_animal } registered!`;
       this.caso = new Caso();
@@ -49,11 +50,17 @@ export class EncontraFormComponent implements OnInit {markers: any[] = [];
 
   addMarker ( clat: any, clng: any )
   {
-    // console.log( this.markers.position)
     this.markers.push( {
       position: {
         lat: clat,
         lng: clng,
+      },
+      icon: {
+        url: '../../../assets/images/petMarkerGeneric.png',
+        scaledSize: {
+          height: 60,
+          width: 60
+        }
       },
       info: "doguito",
       label: {
@@ -64,6 +71,7 @@ export class EncontraFormComponent implements OnInit {markers: any[] = [];
 
       options: {
         animation: google.maps.Animation.BOUNCE,
+        draggable: true,
       },
 
     } )
@@ -72,15 +80,15 @@ export class EncontraFormComponent implements OnInit {markers: any[] = [];
 
   pegaMarcadorDoMouseClick ( event: google.maps.MapMouseEvent )
   {
-
-    console.log( event.latLng!.lat(), event.latLng!.lng() )
+    this.markers = []
     this.addMarker( event.latLng!.lat(), event.latLng!.lng() )
     this.caso.latitude = event.latLng!.lat(),
       this.caso.longitude = event.latLng!.lng()
 
   }
 
-  setTipoAnimal (value:any)
-  { 
+  setTipoAnimal ( value: any )
+  {
     this.caso.tipo_animal = value.target.value
-  }}
+  }
+}

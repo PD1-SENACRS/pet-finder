@@ -12,6 +12,7 @@ export class HomeService
 {
   //todo 
   private readonly baseURL: string = "https://pd1-api2.herokuapp.com/api/casos";
+  private readonly ApiGatos: string = "https://api.thecatapi.com/v1/images/search"
 
 
   constructor ( public httpClient: HttpClient ) { }
@@ -20,16 +21,13 @@ export class HomeService
   {
     const headers = new HttpHeaders()
       .set( 'Content-Type', 'application/json' )
-      .set('Access-Control-Allow-Origin', '*')
-    
-    
+      .set( 'Access-Control-Allow-Origin', '*' )
     const url = this.baseURL
-    console.log(url)
     return this.httpClient.get<ICaso[]>(
       url,
       { 'headers': headers } )
       .pipe(
-        take(1),
+        take( 1 ),
         tap( response =>
         {
 
@@ -38,7 +36,26 @@ export class HomeService
         } )
       );
   }
+    getFotoDeGato (): Observable<string>
+    {
+      const headers = new HttpHeaders()
+      .set( 'Content-Type', 'application/json' )
+      .set( 'Access-Control-Allow-Origin', '*' )
+      const url = this.ApiGatos
+      return this.httpClient.get<string>(
+        url,
+        { 'headers': headers } )
+        .pipe(
+          take( 1 ),
+          tap( response =>
+          {
+
+  
+          } )
+        );
+    }
 }
+
 
 /* 
 

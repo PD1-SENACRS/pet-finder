@@ -38,7 +38,7 @@
 // $color-dog-found: #1D7A68;
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-$petfinder-primary:  #43C6AC;
+$petfinder-primary: #43C6AC;
 $petfinder-accent: #191645;
 
 html,
@@ -52,7 +52,7 @@ body {
       color: #212529;
 }
 
-h1{
+h1 {
       font-size: 25px;
       color: #414141;
       margin-bottom: 2rem;
@@ -128,7 +128,13 @@ h1{
       }
 }
 
-button.btn-pet-finder{
+.custom-file-upload {
+      position: relative;
+      z-index: 2;
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
       font-weight: 600;
       border: 2px solid $petfinder-primary;
       cursor: pointer;
@@ -136,32 +142,58 @@ button.btn-pet-finder{
       border-radius: 10px;
       margin-top: 1rem;
 
-      svg{
-        width: 20px;
-        height: 20px;
-        fill: $petfinder-primary;
+      svg {
+            width: 20px;
+            height: 20px;
+            fill: $petfinder-primary;
       }
-      &:hover{
-        background-color: $petfinder-primary;
-        color: white;
-        transition: .5s;
 
-            svg{
+      &:hover {
+            background-color: $petfinder-primary;
+            color: white;
+            transition: .5s;
+
+            svg {
                   fill: white;
                   transition: .5s;
             }
       }
 }
 
-form{
-      .form-control:focus{
-          border-color: $petfinder-primary;
-          box-shadow: none;
-          transition: .5s;
+button.btn-pet-finder {
+      font-weight: 600;
+      border: 2px solid $petfinder-primary;
+      cursor: pointer;
+      color: $petfinder-primary;
+      border-radius: 10px;
+      margin-top: 1rem;
+
+      svg {
+            width: 20px;
+            height: 20px;
+            fill: $petfinder-primary;
       }
-  }
+
+      &:hover {
+            background-color: $petfinder-primary;
+            color: white;
+            transition: .5s;
+
+            svg {
+                  fill: white;
+                  transition: .5s;
+            }
+      }
+}
+
+form {
+      .form-control:focus {
+            border-color: $petfinder-primary;
+            box-shadow: none;
+            transition: .5s;
+      }
+}
 
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
-

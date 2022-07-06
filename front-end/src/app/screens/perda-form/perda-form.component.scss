@@ -1,15 +1,20 @@
 .form_perda {
-
 }
 
+input[type="file"] {
+    display: none;
+}
 
 #page-login{
       display: flex;
       flex-direction: row;
       .section-form{
           width: 40%;
+          height: fit-content;
           margin: 0 auto;
-          padding: 3rem;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+            padding-bottom: 1.5rem;
           padding-top: 1.5rem;
           border-radius: 10px;
           background: #fff;

@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Caso } from './Caso';
 import { CasoService } from './perda_form.service';
 
-
-
 @Component( {
   selector: 'app-perda-form',
   templateUrl: './perda-form.component.html',
@@ -42,10 +40,10 @@ export class PerdaFormComponent implements OnInit
   ngOnInit (): void { }
   save ()
   {
+    this.caso.status
     this.casoService.Insert( this.caso ).subscribe( caso =>
     {
-      console.log( this.caso )
-      console.log( caso )
+
       this.caso = caso;
       this.message = `${ caso.nome_animal } registered!`;
       this.caso = new Caso();
@@ -54,21 +52,29 @@ export class PerdaFormComponent implements OnInit
 
   addMarker ( clat: any, clng: any )
   {
-    // console.log( this.markers.position)
     this.markers.push( {
       position: {
         lat: clat,
         lng: clng,
       },
+      icon: {
+        url: '../../../assets/images/petMarkerGeneric.png',
+        scaledSize: {
+          height: 60,
+          width: 60
+        }
+      },
       info: "doguito",
       label: {
-        color: 'Black',
+        color: 'white',
         text: 'Doggo Perdidasso',
       },
       title: 'Cãozinho Perdido' + ( this.markers.length + 1 ),
 
       options: {
         animation: google.maps.Animation.BOUNCE,
+        draggable: true,
+
       },
 
     } )
@@ -77,16 +83,15 @@ export class PerdaFormComponent implements OnInit
 
   pegaMarcadorDoMouseClick ( event: google.maps.MapMouseEvent )
   {
-
-    console.log( event.latLng!.lat(), event.latLng!.lng() )
+    this.markers = []
     this.addMarker( event.latLng!.lat(), event.latLng!.lng() )
     this.caso.latitude = event.latLng!.lat(),
       this.caso.longitude = event.latLng!.lng()
 
   }
 
-  setTipoAnimal (value:any)
-  { 
+  setTipoAnimal ( value: any )
+  {
     this.caso.tipo_animal = value.target.value
   }
 }

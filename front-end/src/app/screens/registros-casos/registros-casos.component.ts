@@ -49,7 +49,6 @@ export class RegistrosCasosComponent implements OnInit {
     
     this.novoCaso.tipo_animal = "index da foto"
   
-    console.log(this.novoCaso)
 
   }
 }

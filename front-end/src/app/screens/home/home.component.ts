@@ -103,13 +103,41 @@ export class HomeComponent implements OnInit
 			}
 		} )
 		this.getListaMarcadores()
+	}
 
-
+	verificaTipoPin ( caso: ICaso ): string
+	{
+		if ( caso.status == 'Encontrado' )
+		{
+			let pin = ''
+			switch ( caso.tipo_animal )
+			{
+				case 'gato':
+					pin = '../../../assets/images/pinCatFound.png'
+					break;
+				case 'cachorro':
+					pin = '../../../assets/images/pinDogFound.png'
+					break;
+			}
+			return pin
+		} else
+		{
+			let pin = ''
+			switch ( caso.tipo_animal )
+			{
+				case 'gato':
+					pin = '../../../assets/images/pinCatLost.png'
+					break;
+				case 'cachorro':
+					pin = '../../../assets/images/pinDogLost.png'
+					break;
+			}
+			return pin
+		}
 	}
 
 	setListaMarkers ( listaToMarkers: ICaso[] )
 	{
-
 		listaToMarkers.forEach( element =>
 		{
 			this.markers.push( {
@@ -120,14 +148,12 @@ export class HomeComponent implements OnInit
 				info: "",
 				label: {
 					color: 'black',
-					text: element.tipo_animal
-					
+					text: ""
 				},
-				title: element.nome_animal,
+				title: element,
 				options: {
 					animation: google.maps.Animation.BOUNCE,
-					icon: '../../../assets/images/pinDog.png',
-					 
+					icon: this.verificaTipoPin(element),
 				},
 			} )
 
@@ -161,49 +187,23 @@ export class HomeComponent implements OnInit
 
 	pegaMarcadorDoMouseClick ( event: google.maps.MapMouseEvent )
 	{
-
-		console.log( event.latLng?.lat(), event.latLng?.lng() )
-		this.addMarker()
-
 	}
 
 	teste ( opa: any )
 	{
-		console.log( opa )
 	}
 
-	addMarker ()
-	{
-		// this.markers.push( {
-		// 	position: {
-		// 		lat: -30.02603263617451,
-		// 		lng: -51.22881189451217,
-		// 	},
-		// 	info: "doguito",
-		// 	label: {
-		// 		color: 'Black',
-		// 		text: 'Doggo Perdidasso',
-		// 	},
-		// 	title: 'Cãozinho Perdido' + ( this.markers.length + 1 ),
 
-		// 	options: {
-		// 		animation: google.maps.Animation.BOUNCE
-		// 	},
-
-		// } )
-	}
 
 	openInfo ( marker: MapMarker | HTMLElement, content: any )
 	{
 		this.infoContent = content
 		this.infoWindow.open()
-		console.log( 'teste' )
-
 	}
 
 	openInfoWindow ( marker: MapMarker, content: string )
 	{
-		console.log( this.infoContent )
+		
 		this.infoContent = content
 		this.infoWindow.open( marker );
 	}
@@ -215,7 +215,6 @@ export class HomeComponent implements OnInit
 			{
 				this.listaCasos = value
 				this.setListaMarkers( this.listaCasos )
-				console.log( this.listaCasos )
 			}
 
 
