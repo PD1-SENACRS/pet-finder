@@ -21,8 +21,20 @@
 				<div class="m-1 d-flex flex-column infowindow-size">
 					<h5>{{infoContentName}}</h5>
 					<strong>Raça: {{infoContentRaca}}</strong>
-					<span class="d-flex"><strong>Status:  </strong><p [ngClass]="{ 'infowindow-status-lost' : infoContentStatus  == 'Perdido', 'infowindow-status-found' : infoContentStatus  == 'Encontrado'  }">{{infoContentStatus}}</p></span>
+					<span class="d-flex"><strong>Status: </strong>
+						<p [ngClass]="{ 'infowindow-status-lost' : infoContentStatus  == 'Perdido', 'infowindow-status-found' : infoContentStatus  == 'Encontrado'  }">{{infoContentStatus}}</p>
+					</span>
 					<a href="">detalhes</a>
+					<button class="btn btn-pet-finder btn-login btn-hover ">
+						<svg width="38" height="38" viewBox="0 0 38 38" fill="white" xmlns="http://www.w3.org/2000/svg">
+							<path d="M29.7764 25.6528V16.1518C29.7764 10.3181 26.6995 5.43459 21.3338 4.14245V2.85031C21.3338 1.27314 20.058 0 18.5008 0C16.9436 0 15.7053 1.27314 15.7053 2.85031V4.14245C10.3208 5.43459 7.26268 10.2991 7.26268 16.1518V25.6528L4.8237 28.104C3.64173 29.3012 4.46723 31.3534 6.137 31.3534H30.8458C32.5156 31.3534 33.3598 29.3012 32.1779 28.104L29.7764 25.6528ZM18.5008 37.054C20.5645 37.054 22.2531 35.3438 22.2531 33.2536H14.7485C14.7485 35.3438 16.4183 37.054 18.5008 37.054ZM8.70731 4.23746C9.49529 
+							3.51538 9.51405 2.28025 8.7636 1.52016C8.05066 0.798086 6.88745 0.779084 6.15576 1.48216C2.94755 4.44648 0.733705 8.47492 0.0207707 
+							12.9974C-0.148082 14.1565 0.733705 15.2016 1.89691 15.2016C2.79746 15.2016 3.58544 
+							14.5366 3.73553 13.6245C4.29838 9.93808 6.09947 6.65072 8.70731 4.23746V4.23746ZM30.9021
+							 1.48216C30.1516 0.779084 28.9884 0.798086 28.2755 1.52016C27.525 2.28025 27.5626 3.49638 28.3318 4.21846C30.9208 6.63172 32.7407 
+							 9.91907 33.3035 13.6055C33.4349 14.5176 34.2229 15.1826 35.1422 15.1826C36.2866 15.1826 37.1872 14.1375 36.9996 12.9784C36.2866 8.47492 34.0915 4.46548 30.9021 1.48216V1.48216Z" fill="#43C6AC" />
+						</svg>
+						Notificar </button>
 				</div>
 			</div>
 		</map-info-window>

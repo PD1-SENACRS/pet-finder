@@ -12,7 +12,7 @@ export class HomeService
 {
   //TODO 
   private readonly baseURL: string = "https://pd1-api2.herokuapp.com/api/casos";
-  private readonly ApiGatos: string = "https://api.thecatapi.com/v1/images/search"
+  private readonly ApiGatos: string = "https://softl.ink/cat"
 
 
   constructor ( public httpClient: HttpClient ) { }
@@ -39,7 +39,7 @@ export class HomeService
     getFotoDeGato (): Observable<string>
     {
       const headers = new HttpHeaders()
-      .set( 'Content-Type', 'application/json' )
+      .set( 'Content-Type', "text/html; charset=utf-8" )
       .set( 'Access-Control-Allow-Origin', '*' )
       const url = this.ApiGatos
       return this.httpClient.get<string>(

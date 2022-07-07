@@ -26,10 +26,11 @@ export class HomeComponent implements OnInit
 	options: google.maps.MapOptions = {
 		mapTypeId: 'roadmap',
 		zoomControl: true,
-		scrollwheel: false,
+		scrollwheel: true,
 		disableDoubleClickZoom: true,
 		maxZoom: 22,
 		minZoom: 8,
+		
 	}
 	listaCasos: ICaso[] = [];
 
@@ -98,8 +99,8 @@ export class HomeComponent implements OnInit
 		navigator.geolocation.getCurrentPosition( ( position ) =>
 		{
 			this.center = {
-				lat: -30.026736275902316, //position.coords.latitude,
-				lng: -51.22842297420501,  //position.coords.longitude,
+				lat: position.coords.latitude, //position.coords.latitude,
+				lng: position.coords.longitude,  //position.coords.longitude,
 				zoom: this.zoom,
 
 			}

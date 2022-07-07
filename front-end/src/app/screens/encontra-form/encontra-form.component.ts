@@ -9,7 +9,7 @@ import { CasoService } from '../perda-form/perda_form.service';
 } )
 export class EncontraFormComponent implements OnInit
 {
-    markers: any[] = [];
+  markers: any[] = [];
   caso: Caso = new Caso();
   message = "";
   actionButton = "Register";
@@ -39,6 +39,13 @@ export class EncontraFormComponent implements OnInit
   }
   save ()
   {
+    this.casoService.getFotoDeGato().subscribe(
+      ( value ) =>
+      {
+        this.caso.imagem = value
+        
+      }
+    )
     this.caso.status = 'Encontrado'
     this.casoService.Insert( this.caso ).subscribe( caso =>
     {
