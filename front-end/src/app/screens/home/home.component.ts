@@ -90,7 +90,8 @@ export class HomeComponent implements OnInit
 	];
 	infoContentName = '';
 	infoContentRaca: string = ''
-	infoContentStatus: string =''
+	infoContentStatus: string = ''
+	infoContentImage: string =''
 	zoom = 18
 	center: any;
 
@@ -158,6 +159,7 @@ export class HomeComponent implements OnInit
 					animation: google.maps.Animation.BOUNCE,
 					icon: this.verificaTipoPin(element),
 				},
+				png: element.imagem
 			} )
 
 
@@ -207,6 +209,7 @@ export class HomeComponent implements OnInit
 		this.infoContentName = marke.title
 		this.infoContentRaca = marke.label.text
 		this.infoContentStatus = marke.info
+		this.infoContentImage = marke.png
 		this.infoWindow.open( marker );
 	}
 
