@@ -39,10 +39,20 @@ export class PerdaFormComponent implements OnInit
     lng: -51.22842297420501
   };
 
-  ngOnInit (): void { }
+  ngOnInit (): void
+  {
+    navigator.geolocation.getCurrentPosition( ( position ) =>
+    {
+      this.center = {
+        lat: position.coords.latitude, //position.coords.latitude,
+        lng: position.coords.longitude,  //position.coords.longitude
+      
+      }
+    } )
+  }
   save ()
   {
-    this.isLoading = true; 
+    this.isLoading = true;
     this.caso.status
     this.casoService.Insert( this.caso ).subscribe( caso =>
     {

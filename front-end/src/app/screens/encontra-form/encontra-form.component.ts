@@ -17,6 +17,7 @@ export class EncontraFormComponent implements OnInit
   actionButton = "Register";
   latDoMapa: any
   lngDoMapa: any
+  
   constructor ( private casoService: CasoService, private router: Router, ) { }
   contentString = ''
   options: google.maps.MapOptions = {
@@ -36,6 +37,15 @@ export class EncontraFormComponent implements OnInit
 
   ngOnInit (): void
   {
+    navigator.geolocation.getCurrentPosition( ( position ) =>
+		{
+			this.center = {
+				lat: position.coords.latitude, //position.coords.latitude,
+				lng: position.coords.longitude,  //position.coords.longitude,
+				
+
+			}
+		} )
     this.caso.status = 'Encontrado'
 
   }

@@ -200,7 +200,6 @@ export class HomeComponent implements OnInit
 
 	openInfoWindow ( marker: MapMarker, marke: any )
 	{ 
-		//TODO fazer a foto vir pra ca
 
 		
 		this.infoWindow.infoWindow.gm_bindings_.maxWidth = 300;
