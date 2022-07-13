@@ -2,6 +2,7 @@ import { MapMarker } from '@angular/google-maps';
 import { Component, OnInit } from '@angular/core';
 import { Caso } from './Caso';
 import { CasoService } from './perda_form.service';
+import { Router } from '@angular/router';
 
 @Component( {
   selector: 'app-perda-form',
@@ -14,18 +15,19 @@ export class PerdaFormComponent implements OnInit
   markers: any[] = [];
   caso: Caso = new Caso();
   message = "";
+  isLoading = false;
   actionButton = "Register";
   latDoMapa: any
   lngDoMapa: any
 
 
-  constructor ( private casoService: CasoService ) { }
+  constructor ( private casoService: CasoService, private router: Router ) { }
 
   contentString = ''
   options: google.maps.MapOptions = {
     mapTypeId: 'roadmap',
     zoomControl: false,
-    scrollwheel: false,
+    scrollwheel: true,
     disableDoubleClickZoom: true,
     maxZoom: 22,
     minZoom: 8,
@@ -40,6 +42,7 @@ export class PerdaFormComponent implements OnInit
   ngOnInit (): void { }
   save ()
   {
+    this.isLoading = true; 
     this.caso.status
     this.casoService.Insert( this.caso ).subscribe( caso =>
     {
@@ -47,6 +50,8 @@ export class PerdaFormComponent implements OnInit
       this.caso = caso;
       this.message = `${ caso.nome_animal } registered!`;
       this.caso = new Caso();
+      this.isLoading = false
+      this.router.navigate( [ '/' ] );
     } )
   }
 

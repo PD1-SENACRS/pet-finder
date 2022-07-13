@@ -35,7 +35,13 @@
                                           </svg>
                                     </label>
                                     <div>
-                                          <button type="submit" class="btn btn-pet-finder btn-login " [disabled]="(!caso.latitude && !caso.longitude) " (click)="save()">Registar perda <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                          <ng-template #btn>
+                                                <button disabled="true" class="btn btn-pet-finder btn-login ">
+                                                      Registar caso
+                                                      <img class="button-spinner" src="assets/images/spinner.gif">
+                                                </button>
+                                          </ng-template>
+                                          <button *ngIf="isLoading == false; else btn" type="submit" class="btn btn-pet-finder btn-login " [disabled]="(!caso.latitude && !caso.longitude) " (click)="save()">Registar caso <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M15.4616 11.6081C14.8856 12.1878 14.8856 13.1094 15.4616 13.6891L18.2676 16.5135H4.68056C3.86829 16.5135 3.2037 17.1824 3.2037 18C3.2037 18.8175 3.86829 19.4864 4.68056 19.4864H18.2676L15.4616 22.3108C14.8856 22.8905 14.8856 23.8121 15.4616 24.3919C16.0375 24.9716 16.9532 24.9716 17.5292 24.3919L22.8311 19.0554C23.407 18.4756 23.407 17.5391 22.8311 16.9594L17.5292 11.6081C16.9532 11.0283 16.0375 11.0283 15.4616 11.6081ZM29.787 28.4054H19.4491C18.6368 28.4054 17.9722 29.0743 17.9722 29.8919C17.9722 30.7094 18.6368 31.3783 19.4491 31.3783H29.787C31.4116 31.3783 32.7407 30.0405 32.7407 28.4054V7.59455C32.7407 5.95942 31.4116 4.62158 29.787 4.62158H19.4491C18.6368 4.62158 17.9722 5.2905 17.9722 6.10807C17.9722 6.92564 18.6368 7.59455 19.4491 7.59455H29.787V28.4054Z" />
                                                 </svg>
                                           </button>

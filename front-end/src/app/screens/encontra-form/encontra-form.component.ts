@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Caso } from '../perda-form/Caso';
 import { CasoService } from '../perda-form/perda_form.service';
 
@@ -12,15 +13,16 @@ export class EncontraFormComponent implements OnInit
   markers: any[] = [];
   caso: Caso = new Caso();
   message = "";
+  isLoading = false;
   actionButton = "Register";
   latDoMapa: any
   lngDoMapa: any
-  constructor ( private casoService: CasoService ) { }
+  constructor ( private casoService: CasoService, private router: Router, ) { }
   contentString = ''
   options: google.maps.MapOptions = {
     mapTypeId: 'roadmap',
     zoomControl: false,
-    scrollwheel: false,
+    scrollwheel: true,
     disableDoubleClickZoom: true,
     maxZoom: 22,
     minZoom: 8,
@@ -39,19 +41,23 @@ export class EncontraFormComponent implements OnInit
   }
   save ()
   {
-    this.casoService.getFotoDeGato().subscribe(
-      ( value ) =>
-      {
-        this.caso.imagem = value
+    this.isLoading = true;
+    // this.casoService.getFotoDeGato().subscribe(
+    //   ( value ) =>
+    //   {
+    //     this.caso.imagem = value
         
-      }
-    )
+    //   }
+    // )
     this.caso.status = 'Encontrado'
     this.casoService.Insert( this.caso ).subscribe( caso =>
     {
       this.caso = caso;
       this.message = `${ caso.nome_animal } registered!`;
       this.caso = new Caso();
+      this.isLoading = false
+      this.router.navigate( [ '/' ] );
+      
     } )
   }
 
